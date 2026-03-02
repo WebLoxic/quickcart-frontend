@@ -21,7 +21,7 @@ const products = [
     weight: "500 ml",
     price: 29,
     category: "Dairy, Bread & Eggs",
-    image: "https://images.unsplash.com/photo-1550583724-b2692b85b150",
+    image: "/assets/images/product/amul1.png",
   },
   {
     id: 3,
@@ -29,7 +29,7 @@ const products = [
     weight: "100 g",
     price: 58,
     category: "Dairy, Bread & Eggs",
-    image: "https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d",
+    image: "/assets/images/product/amulbutter.png",
   },
   {
     id: 4,
@@ -37,7 +37,7 @@ const products = [
     weight: "450 g",
     price: 60,
     category: "Dairy, Bread & Eggs",
-    image: "https://images.unsplash.com/photo-1608198093002-ad4e005484ec",
+    image: "/assets/images/product/gold.png",
   },
   {
     id: 5,
@@ -45,7 +45,7 @@ const products = [
     weight: "390 g",
     price: 35,
     category: "Dairy, Bread & Eggs",
-    image: "https://images.unsplash.com/photo-1571212515416-fef01fc43637",
+    image: "/assets/images/product/motherdairy.png",
   },
   {
     id: 6,
@@ -53,7 +53,7 @@ const products = [
     weight: "500 ml",
     price: 30,
     category: "Dairy, Bread & Eggs",
-    image: "https://images.unsplash.com/photo-1550583724-b2692b85b150",
+    image: "/assets/images/product/motherdairy2.png",
   },
   {
     id: 7,
@@ -61,7 +61,7 @@ const products = [
     weight: "350 g",
     price: 30,
     category: "Dairy, Bread & Eggs",
-    image: "https://images.unsplash.com/photo-1549931319-a545dcf3bc73",
+    image: "/assets/images/product/whitebread.png",
   },
   {
     id: 8,
@@ -69,7 +69,7 @@ const products = [
     weight: "250 ml",
     price: 65,
     category: "Dairy, Bread & Eggs",
-    image: "https://images.unsplash.com/photo-1604908176997-4316c66e2e4c",
+    image: "/assets/images/product/motherdairy3.png",
   },
   {
     id: 9,
@@ -77,7 +77,7 @@ const products = [
     weight: "12 pcs",
     price: 72,
     category: "Dairy, Bread & Eggs",
-    image: "https://images.unsplash.com/photo-1582721661097-30f6b90dfe16",
+    image: "/assets/images/product/motherdairy4.png",
   },
   {
     id: 10,
@@ -85,7 +85,7 @@ const products = [
     weight: "400 g",
     price: 55,
     category: "Dairy, Bread & Eggs",
-    image: "https://images.unsplash.com/photo-1587241321921-91a834d6d191",
+    image: "/assets/images/product/curd.png",
   },
 
   // 🚬 Rolling Paper & Tobacco Category
@@ -95,7 +95,7 @@ const products = [
     weight: "3 pcs",
     price: 45,
     category: "Rolling paper & tobacco",
-    image: "https://images.unsplash.com/photo-1608198093002-ad4e005484ec",
+    image: "/assets/images/product/roll1.png",
   },
   {
     id: 102,
@@ -103,7 +103,7 @@ const products = [
     weight: "32 pcs",
     price: 90,
     category: "Rolling paper & tobacco",
-    image: "https://images.unsplash.com/photo-1541976844346-f18aeac57b06",
+    image: "/assets/images/product/roll2.png",
   },
   {
     id: 103,
@@ -111,7 +111,7 @@ const products = [
     weight: "32 pcs",
     price: 79,
     category: "Rolling paper & tobacco",
-    image: "https://images.unsplash.com/photo-1604908176905-3fa7d0b0f4d3",
+    image: "/assets/images/product/roll3.png",
   },
   {
     id: 104,
@@ -119,7 +119,39 @@ const products = [
     weight: "1 pc",
     price: 120,
     category: "Rolling paper & tobacco",
-    image: "https://images.unsplash.com/photo-1599785209796-786432b2280d",
+    image: "/assets/images/product/roll4.png",
+  },
+  {
+    id: 104,
+    name: "Perfect Rolled Cones (Natural)",
+    weight: "3 pcs",
+    price: 45,
+    category: "Rolling paper & tobacco",
+    image: "/assets/images/product/roll8.png",
+  },
+  {
+    id: 105,
+    name: "Ultimate Rolling Paper with Filter Tips",
+    weight: "32 pcs",
+    price: 90,
+    category: "Rolling paper & tobacco",
+    image: "/assets/images/product/roll7.png",
+  },
+  {
+    id: 106,
+    name: "White Thin Rolling Paper (King Size)",
+    weight: "32 pcs",
+    price: 79,
+    category: "Rolling paper & tobacco",
+    image: "/assets/images/product/roll6.png",
+  },
+  {
+    id: 107,
+    name: "Pre-Rolled Rose Blunt Rolling Paper",
+    weight: "1 pc",
+    price: 120,
+    category: "Rolling paper & tobacco",
+    image: "/assets/images/product/roll5.png",
   },
 
   // 🍿 Snacks & Munchies Category
@@ -131,7 +163,7 @@ const products = [
   originalPrice: null,
   discount: "61% OFF",
   category: "Snacks & Munchies",
-  image: "https://images.unsplash.com/photo-1621939514649-280e2ee25f60",
+  image: "/assets/images/product/snacks1.png",
 },
 {
   id: 202,
@@ -141,7 +173,7 @@ const products = [
   originalPrice: 190,
   discount: "61% OFF",
   category: "Snacks & Munchies",
-  image: "https://images.unsplash.com/photo-1604908176997-4316c66e2e4c",
+  image: "/assets/images/product/snacks2.png",
 },
 {
   id: 203,
@@ -151,7 +183,7 @@ const products = [
   originalPrice: 60,
   discount: "15% OFF",
   category: "Snacks & Munchies",
-  image: "https://images.unsplash.com/photo-1585238342024-78d387f4a707",
+  image: "/assets/images/product/snacks3.png",
 },
 {
   id: 204,
@@ -161,7 +193,7 @@ const products = [
   originalPrice: 133,
   discount: "25% OFF",
   category: "Snacks & Munchies",
-  image: "https://images.unsplash.com/photo-1604908176905-3fa7d0b0f4d3",
+  image: "/assets/images/product/snacks4.png",
 },
 {
   id: 205,
@@ -171,7 +203,7 @@ const products = [
   originalPrice: 70,
   discount: "15% OFF",
   category: "Snacks & Munchies",
-  image: "https://images.unsplash.com/photo-1599785209796-786432b2280d",
+  image: "/assets/images/product/snacks5.png",
 },
 {
   id: 206,
@@ -181,7 +213,7 @@ const products = [
   originalPrice: 60,
   discount: "15% OFF",
   category: "Snacks & Munchies",
-  image: "https://images.unsplash.com/photo-1585238342024-78d387f4a707",
+  image: "/assets/images/product/snacks6.png",
 },
 
 // 🪔 Hookah Category
@@ -193,7 +225,7 @@ const products = [
   originalPrice: null,
   discount: null,
   category: "Hookah",
-  image: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80",
+  image: "/assets/images/product/hookah1.png",
 },
 {
   id: 302,
@@ -203,7 +235,7 @@ const products = [
   originalPrice: 80,
   discount: "12% OFF",
   category: "Hookah",
-  image: "https://images.unsplash.com/photo-1604908176997-4316c66e2e4c",
+  image: "/assets/images/product/hookah2.png",
 },
 {
   id: 303,
@@ -213,7 +245,7 @@ const products = [
   originalPrice: null,
   discount: null,
   category: "Hookah",
-  image: "https://images.unsplash.com/photo-1585238342024-78d387f4a707",
+  image: "/assets/images/product/hookah3.png",
 },
 {
   id: 304,
@@ -223,7 +255,7 @@ const products = [
   originalPrice: null,
   discount: null,
   category: "Hookah",
-  image: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80",
+  image: "/assets/images/product/hookah4.png",
 },
 {
   id: 305,
@@ -233,7 +265,57 @@ const products = [
   originalPrice: null,
   discount: null,
   category: "Hookah",
-  image: "https://images.unsplash.com/photo-1605719125064-3b9c41a4c06e",
+  image: "/assets/images/product/hookah5.png",
+},
+{
+  id: 306,
+  name: "Coconut Shell Hookah Coal by Cocoyaya",
+  weight: "250 g",
+  price: 150,
+  originalPrice: null,
+  discount: null,
+  category: "Hookah",
+  image: "/assets/images/product/hookah6.png",
+},
+{
+  id: 307,
+  name: "Premium Magic Coal by Stash Pro",
+  weight: "10 pcs",
+  price: 70,
+  originalPrice: 80,
+  discount: "12% OFF",
+  category: "Hookah",
+  image: "/assets/images/product/hookah7.png",
+},
+{
+  id: 308,
+  name: "Mouth Filter Tips for Filters by Afzal",
+  weight: "5 pcs",
+  price: 39,
+  originalPrice: null,
+  discount: null,
+  category: "Hookah",
+  image: "/assets/images/product/hookah8.png",
+},
+{
+  id: 309,
+  name: "Coconut Hookah Coal Cubes by Stash Pro",
+  weight: "250 g",
+  price: 180,
+  originalPrice: null,
+  discount: null,
+  category: "Hookah",
+  image: "/assets/images/product/hookah9.png",
+},
+{
+  id: 310,
+  name: "Tachi Bana Hookah by Cocoyaya",
+  weight: "1 pc",
+  price: 4890,
+  originalPrice: null,
+  discount: null,
+  category: "Hookah",
+  image: "/assets/images/product/hookah10.png",
 },
 
 // 🍃 Mouth Fresheners Category
@@ -245,7 +327,7 @@ const products = [
   originalPrice: null,
   discount: null,
   category: "Mouth fresheners",
-  image: "https://images.unsplash.com/photo-1585238342024-78d387f4a707",
+  image: "/assets/images/product/freshner1.png",
 },
 {
   id: 402,
@@ -255,7 +337,7 @@ const products = [
   originalPrice: 99,
   discount: "14% OFF",
   category: "Mouth fresheners",
-  image: "https://images.unsplash.com/photo-1604908176997-4316c66e2e4c",
+  image: "/assets/images/product/freshner1.png",
 },
 {
   id: 403,
@@ -265,7 +347,7 @@ const products = [
   originalPrice: null,
   discount: null,
   category: "Mouth fresheners",
-  image: "https://images.unsplash.com/photo-1585238342024-78d387f4a707",
+  image: "/assets/images/product/freshner2.png",
 },
 {
   id: 404,
@@ -275,7 +357,7 @@ const products = [
   originalPrice: 159,
   discount: "19% OFF",
   category: "Mouth fresheners",
-  image: "https://images.unsplash.com/photo-1604908176905-3fa7d0b0f4d3",
+  image: "/assets/images/product/freshner3.png",
 },
 {
   id: 405,
@@ -285,7 +367,57 @@ const products = [
   originalPrice: null,
   discount: null,
   category: "Mouth fresheners",
-  image: "https://images.unsplash.com/photo-1585238342024-78d387f4a707",
+  image: "/assets/images/product/freshner4.png",
+},
+{
+  id: 406,
+  name: "Rajnigandha Silver Pearl Elaichi",
+  weight: "5.75 g",
+  price: 60,
+  originalPrice: null,
+  discount: null,
+  category: "Mouth fresheners",
+  image: "/assets/images/product/freshner1.png",
+},
+{
+  id: 407,
+  name: "Spraymint Icymint Mouth Spray",
+  weight: "15 g",
+  price: 85,
+  originalPrice: 99,
+  discount: "14% OFF",
+  category: "Mouth fresheners",
+  image: "/assets/images/product/freshner1.png",
+},
+{
+  id: 408,
+  name: "Trident Original Flavour Chewing Gum",
+  weight: "14 pcs",
+  price: 150,
+  originalPrice: null,
+  discount: null,
+  category: "Mouth fresheners",
+  image: "/assets/images/product/freshner2.png",
+},
+{
+  id: 409,
+  name: "Only Anardana Digestive Goli",
+  weight: "180 g",
+  price: 128,
+  originalPrice: 159,
+  discount: "19% OFF",
+  category: "Mouth fresheners",
+  image: "/assets/images/product/freshner3.png",
+},
+{
+  id: 410,
+  name: "Perfora Mouth Spray - Instant Fresh Breath",
+  weight: "10 ml",
+  price: 159,
+  originalPrice: null,
+  discount: null,
+  category: "Mouth fresheners",
+  image: "/assets/images/product/freshner4.png",
 },
 // 🥤 Cold Drinks & Juices
 {
@@ -294,7 +426,7 @@ const products = [
   weight: "10 L",
   price: 108,
   category: "Cold Drinks & Juices",
-  image: "https://images.unsplash.com/photo-1581091870627-3c2f8b4e6f58",
+  image: "/assets/images/product/coldrink1.png",
 },
 {
   id: 502,
@@ -302,7 +434,7 @@ const products = [
   weight: "300 ml",
   price: 40,
   category: "Cold Drinks & Juices",
-  image: "https://images.unsplash.com/photo-1629203432180-71f6aef3c1c2",
+  image: "/assets/images/product/coldrink2.png",
 },
 {
   id: 503,
@@ -312,7 +444,7 @@ const products = [
   originalPrice: 160,
   discount: "1% OFF",
   category: "Cold Drinks & Juices",
-  image: "https://images.unsplash.com/photo-1586190848861-99aa4a171e90",
+  image: "/assets/images/product/coldrink3.png",
 },
 {
   id: 504,
@@ -320,7 +452,7 @@ const products = [
   weight: "270 ml",
   price: 10,
   category: "Cold Drinks & Juices",
-  image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b",
+  image: "/assets/images/product/coldrink4.png",
 },
 {
   id: 505,
@@ -328,7 +460,7 @@ const products = [
   weight: "750 ml",
   price: 40,
   category: "Cold Drinks & Juices",
-  image: "https://images.unsplash.com/photo-1624517452488-04869289c4ca",
+  image: "/assets/images/product/coldrink5.png",
 },
 {
   id: 506,
@@ -338,7 +470,7 @@ const products = [
   originalPrice: 40,
   discount: "2% OFF",
   category: "Cold Drinks & Juices",
-  image: "https://images.unsplash.com/photo-1624517452488-04869289c4ca",
+  image: "/assets/images/product/coldrink6.png",
 },
 
 // 🍬 Candies & Gums
@@ -348,7 +480,7 @@ const products = [
   weight: "19.8 g",
   price: 45,
   category: "Candies & Gums",
-  image: "https://images.unsplash.com/photo-1604908176905-3fa7d0b0f4d3",
+  image: "/assets/images/product/candy1.png",
 },
 {
   id: 602,
@@ -358,7 +490,7 @@ const products = [
   originalPrice: 35,
   discount: "3% OFF",
   category: "Candies & Gums",
-  image: "https://images.unsplash.com/photo-1585238342024-78d387f4a707",
+  image: "/assets/images/product/candy2.png",
 },
 {
   id: 603,
@@ -368,7 +500,7 @@ const products = [
   originalPrice: 28,
   discount: "17% OFF",
   category: "Candies & Gums",
-  image: "https://images.unsplash.com/photo-1604908176997-4316c66e2e4c",
+  image: "/assets/images/product/candy3.png",
 },
 {
   id: 604,
@@ -376,7 +508,7 @@ const products = [
   weight: "40 g",
   price: 40,
   category: "Candies & Gums",
-  image: "https://images.unsplash.com/photo-1585238342024-78d387f4a707",
+  image: "/assets/images/product/candy4.png",
 },
 {
   id: 605,
@@ -386,7 +518,7 @@ const products = [
   originalPrice: 45,
   discount: "5% OFF",
   category: "Candies & Gums",
-  image: "https://images.unsplash.com/photo-1604908176905-3fa7d0b0f4d3",
+  image: "/assets/images/product/candy5.png",
 },
 {
   id: 606,
@@ -396,7 +528,7 @@ const products = [
   originalPrice: 60,
   discount: "5% OFF",
   category: "Candies & Gums",
-  image: "https://images.unsplash.com/photo-1585238342024-78d387f4a707",
+  image: "/assets/images/product/candy6.png",
 },
 ];
 
