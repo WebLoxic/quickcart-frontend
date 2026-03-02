@@ -151,7 +151,7 @@ const products = [
     weight: "1 pc",
     price: 120,
     category: "Rolling paper & tobacco",
-    image: "/assets/images/product/roll5.png",
+    image: "/assets/images/product/roll7.png",
   },
 
   // 🍿 Snacks & Munchies Category
