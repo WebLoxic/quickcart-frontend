@@ -3,7 +3,8 @@ import "./globals.css";
 
 // ✅ Import Header & Footer
 import Header from "@/component/layout/Header";
-import Footer from "@/component/layout/Footer";
+
+import ConditionalFooter from "@/component/layout/ConditionalFooter";
 
 // ✅ Import CartProvider
 import { CartProvider } from "@/context/CartContext";
@@ -30,20 +31,17 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
       >
         {/* ✅ Wrap Entire App Inside CartProvider */}
-        <CartProvider>
+    <CartProvider>
 
-          {/* Header */}
-          <Header />
+  <Header />
 
-          {/* Page Content */}
-          <main className="flex-grow">
-            {children}
-          </main>
+  <main className="flex-grow">
+    {children}
+  </main>
 
-          {/* Footer */}
-          <Footer />
+  <ConditionalFooter />
 
-        </CartProvider>
+</CartProvider>
       </body>
     </html>
   );
