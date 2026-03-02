@@ -143,7 +143,7 @@ const products = [
     weight: "32 pcs",
     price: 79,
     category: "Rolling paper & tobacco",
-    image: "/assets/images/product/roll6.png",
+    image: "/assets/images/product/role6.png",
   },
   {
     id: 107,
@@ -235,7 +235,7 @@ const products = [
   originalPrice: 80,
   discount: "12% OFF",
   category: "Hookah",
-  image: "/assets/images/product/hookah2.png",
+  image: "/assets/images/product/hookah9.png",
 },
 {
   id: 303,

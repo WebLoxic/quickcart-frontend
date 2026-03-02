@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import {
   ShoppingCart,
   Search,
-  MapPin,
   User,
   ChevronDown
 } from "lucide-react";
@@ -22,9 +21,6 @@ export default function Header() {
 
   const { cartCount } = useCart();
 
-  /* =========================
-     CHECK LOGIN STATUS
-  ========================== */
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
@@ -44,12 +40,8 @@ export default function Header() {
           <div className="flex justify-between items-start">
 
             <div>
-              <p className="font-bold text-black text-sm">
-                Delivery in 10 minutes
-              </p>
-
-              <div className="flex items-center gap-1 text-xs text-black mt-1">
-                <span className="truncate max-w-[180px]">
+              <div className="flex items-center gap-1 text-xs text-black">
+                <span className="truncate max-w-[200px]">
                   Home - {location}
                 </span>
                 <ChevronDown size={14} />
@@ -103,11 +95,6 @@ export default function Header() {
             QuickCart
           </Link>
 
-          <div className="flex items-center gap-2 text-sm text-black">
-            <MapPin size={16} />
-            <span>Delivery in 10 minutes</span>
-          </div>
-
           <div className="flex-1 mx-8">
             <div className="flex items-center bg-white rounded-lg px-3 py-2">
               <Search size={18} className="text-gray-500" />
@@ -149,7 +136,7 @@ export default function Header() {
 
       </header>
 
-      {/* ================= BOTTOM CART BAR (MOBILE ONLY) ================= */}
+      {/* ================= BOTTOM CART BAR ================= */}
       <BottomCartBar onClick={() => setOpenCart(true)} />
 
       {/* ================= CART DRAWER ================= */}
