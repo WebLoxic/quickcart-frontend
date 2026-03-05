@@ -1,15 +1,23 @@
 import products from "@/data/products";
-import { notFound } from "next/navigation";
 import ProductDetailClient from "@/component/product/ProductDetailClient";
 
-export default async function Page({ params }) {
-  const { id } = await params;
+export default async function ProductPage({ params }) {
+
+  const { id } = await params;   // 👈 IMPORTANT
+
+  const productId = parseInt(id);
 
   const product = products.find(
-    (item) => item.id.toString() === id
+    (item) => item.id === productId
   );
 
-  if (!product) return notFound();
+  if (!product) {
+    return (
+      <div className="p-20 text-center text-xl">
+        Product not found
+      </div>
+    );
+  }
 
   return <ProductDetailClient product={product} />;
 }

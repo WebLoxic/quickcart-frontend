@@ -3,13 +3,13 @@
 import Image from "next/image";
 import { useState } from "react";
 import { useCart } from "@/context/CartContext";
-import ProductCard from "@/component/homepage/ProductCard";
 import products from "@/data/products";
-import Link from "next/link";
- import { Clock, Tag, ShieldCheck } from "lucide-react";
+import ProductCard from "@/component/ProductCard";
 
 export default function ProductDetailClient({ product }) {
+
   const { addToCart } = useCart();
+  const [qty, setQty] = useState(1);
 
   const images =
     product?.images?.length
@@ -20,6 +20,8 @@ export default function ProductDetailClient({ product }) {
 
   const [selectedImage, setSelectedImage] = useState(images[0]);
 
+  /* Similar Products */
+
   const similarProducts = products.filter(
     (item) =>
       item.category === product.category &&
@@ -27,178 +29,196 @@ export default function ProductDetailClient({ product }) {
   );
 
   return (
-    <div className="bg-gray-50 min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
 
-        {/* ================= MAIN SECTION ================= */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-20">
+    <div className="max-w-[1250px] mx-auto px-6 py-12">
 
-          {/* LEFT SIDE */}
-          <div>
+      {/* ================= PRODUCT SECTION ================= */}
 
-            {/* Main Image */}
-            <div className="bg-white rounded-2xl border border-gray-200 p-6 sm:p-10">
-              <div className="relative w-full h-[300px] sm:h-[420px]">
-                <Image
-                  src={selectedImage}
-                  alt={product.name}
-                  fill
-                  className="object-contain"
-                />
-              </div>
-            </div>
+      <div className="grid md:grid-cols-2 gap-16">
 
-            {/* Thumbnails */}
-            {images.length > 1 && (
-              <div className="flex gap-3 mt-4 overflow-x-auto">
-                {images.map((img, index) => (
-                  <div
-                    key={index}
-                    onClick={() => setSelectedImage(img)}
-                    className={`relative min-w-[70px] h-[70px] bg-white rounded-xl border cursor-pointer ${
-                      selectedImage === img
-                        ? "border-green-600"
-                        : "border-gray-200"
-                    }`}
-                  >
-                    <Image
-                      src={img}
-                      alt="thumb"
-                      fill
-                      className="object-contain p-2"
-                    />
-                  </div>
-                ))}
-              </div>
-            )}
+        {/* LEFT IMAGE */}
+
+        <div>
+
+          <div className="relative w-full h-[420px] bg-white">
+
+            <Image
+              src={selectedImage}
+              alt={product.name}
+              fill
+              className="object-contain"
+            />
 
           </div>
 
-          {/* RIGHT SIDE */}
-          <div className="flex flex-col justify-start">
+          {/* THUMBNAILS */}
 
-            {/* Breadcrumb */}
-            <p className="text-sm text-gray-500 mb-3">
-              Home / {product.category}
-            </p>
+          {images.length > 1 && (
 
-            {/* Title */}
-            <h1 className="text-2xl sm:text-3xl font-semibold text-gray-900">
-              {product.name}
-            </h1>
+            <div className="flex gap-3 mt-4">
 
-            {/* Weight */}
-            <p className="text-gray-500 text-sm mt-2">
-              {product.weight}
-            </p>
+              {images.map((img, index) => (
 
-            {/* Price + Add to Cart Row */}
-            <div className="flex items-center justify-between mt-6">
+                <div
+                  key={index}
+                  onClick={() => setSelectedImage(img)}
+                  className={`relative w-[80px] h-[80px] cursor-pointer border ${
+                    selectedImage === img
+                      ? "border-black"
+                      : "border-gray-200"
+                  }`}
+                >
 
-              <div className="text-3xl sm:text-4xl font-bold text-gray-900">
-                ₹{product.price}
-              </div>
+                  <Image
+                    src={img}
+                    alt="thumb"
+                    fill
+                    className="object-contain p-1"
+                  />
+
+                </div>
+
+              ))}
+
+            </div>
+
+          )}
+
+        </div>
+
+        {/* RIGHT SIDE */}
+
+        <div>
+
+          <p className="text-gray-500 uppercase text-sm mb-2">
+            SATMOLA
+          </p>
+
+          <h1 className="text-2xl font-semibold mb-4">
+            {product.name}
+          </h1>
+
+          {/* Rating */}
+
+          <div className="flex items-center gap-2 mb-4 text-yellow-500">
+            ★★★★★
+            <span className="text-gray-600 text-sm">
+              3 Reviews
+            </span>
+          </div>
+
+          {/* Price */}
+
+          <p className="text-xl font-semibold mb-6">
+            MRP ₹ {product.price}.00
+          </p>
+
+          <p className="text-sm text-gray-500 mb-6">
+            Inclusive of all taxes Shipping calculated at checkout.
+          </p>
+
+          {/* Quantity */}
+
+          <div className="flex items-center gap-4 mb-6">
+
+            <p>Quantity</p>
+
+            <div className="flex border">
 
               <button
-                onClick={() => addToCart(product)}
-                className="bg-green-600 hover:bg-green-700 text-white px-6 sm:px-8 py-3 rounded-lg font-semibold transition"
+                onClick={() => setQty(qty > 1 ? qty - 1 : 1)}
+                className="px-4 py-2"
               >
-                Add to cart
+                -
+              </button>
+
+              <span className="px-6 py-2 border-x">
+                {qty}
+              </span>
+
+              <button
+                onClick={() => setQty(qty + 1)}
+                className="px-4 py-2"
+              >
+                +
               </button>
 
             </div>
 
-          
+          </div>
 
-{/* Why Shop Section */}
-<div className="mt-10 pt-8 border-t border-gray-200">
-  <h2 className="text-lg font-semibold mb-6">
-    Why shop from QuickCart?
-  </h2>
+          {/* Buttons */}
 
-  <div className="space-y-6">
+          <button
+            onClick={() => addToCart({ ...product, qty })}
+            className="w-full border py-3 mb-3 hover:bg-black hover:text-white transition"
+          >
+            Add to cart
+          </button>
 
-    {/* Express Delivery */}
-    <div className="flex items-start gap-4">
-      <div className="bg-green-100 p-3 rounded-full">
-        <Clock className="text-green-600" size={22} />
-      </div>
-      <div>
-        <p className="font-semibold text-gray-900">
-          Round The Clock Delivery
-        </p>
-        <p className="text-sm text-gray-600">
-          Get items delivered to your doorstep from dark stores near you,
-          whenever you need them.
-        </p>
-      </div>
-    </div>
+          <button className="w-full bg-black text-white py-3">
+            Buy it now
+          </button>
 
-    {/* Best Prices */}
-    <div className="flex items-start gap-4">
-      <div className="bg-green-100 p-3 rounded-full">
-        <Tag className="text-green-600" size={22} />
-      </div>
-      <div>
-        <p className="font-semibold text-gray-900">
-          Best Prices & Offers
-        </p>
-        <p className="text-sm text-gray-600">
-          Best price destination with offers directly from the manufacturers.
-        </p>
-      </div>
-    </div>
+          {/* Pickup */}
 
-    {/* Genuine Products */}
-    <div className="flex items-start gap-4">
-      <div className="bg-green-100 p-3 rounded-full">
-        <ShieldCheck className="text-green-600" size={22} />
-      </div>
-      <div>
-        <p className="font-semibold text-gray-900">
-          Wide Assortment
-        </p>
-        <p className="text-sm text-gray-600">
-          Choose from 30,000+ products across food, personal care,
-          household & other categories.
-        </p>
-      </div>
-    </div>
+          <p className="mt-6 text-sm text-gray-600">
+            ✔ Pickup available at Shop location
+          </p>
 
-  </div>
-</div>
+          <p className="text-sm text-gray-500">
+            Usually ready in 24 hours
+          </p>
+
+          {/* Description */}
+
+          <div className="mt-10">
+
+            <h2 className="text-xl font-semibold mb-3">
+              Product Description
+            </h2>
+
+            <p className="text-gray-600 leading-relaxed">
+              Enjoy the perfect balance of flavors with {product.name}.
+              This crunchy and mildly spiced snack is ideal for teatime
+              or anytime cravings.
+            </p>
 
           </div>
 
         </div>
 
-        {/* ================= SIMILAR PRODUCTS ================= */}
-        {similarProducts.length > 0 && (
-          <div className="mt-16 sm:mt-20">
+      </div>
 
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-xl sm:text-2xl font-semibold">
-                Similar products
-              </h2>
+      {/* ================= SIMILAR PRODUCTS ================= */}
 
-              <Link
-                href={`/category/${product.category}`}
-                className="text-green-600 font-medium text-sm hover:underline"
-              >
-                See All
-              </Link>
-            </div>
+      {similarProducts.length > 0 && (
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-              {similarProducts.slice(0, 6).map((item) => (
-                <ProductCard key={item.id} product={item} />
-              ))}
-            </div>
+        <div className="mt-20">
+
+          <h2 className="text-2xl font-semibold mb-8">
+            Similar Products
+          </h2>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+
+            {similarProducts.slice(0, 5).map((item) => (
+
+              <ProductCard
+                key={item.id}
+                product={item}
+              />
+
+            ))}
 
           </div>
-        )}
 
-      </div>
+        </div>
+
+      )}
+
     </div>
+
   );
+
 }

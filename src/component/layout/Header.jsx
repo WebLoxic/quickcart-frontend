@@ -6,6 +6,9 @@ import {
   ShoppingCart,
   Search,
   User,
+  Menu,
+  X,
+  ChevronRight,
   ChevronDown
 } from "lucide-react";
 
@@ -14,48 +17,32 @@ import CartDrawer from "@/component/cart/CartDrawer";
 import BottomCartBar from "@/component/cart/BottomCartBar";
 
 export default function Header() {
+
   const [openCart, setOpenCart] = useState(false);
+  const [openMenu, setOpenMenu] = useState(false);
   const [openAccount, setOpenAccount] = useState(false);
-  const [location] = useState("223a, Commercial Complex, Gopal Nagar");
-  const [query, setQuery] = useState("");
   const [user, setUser] = useState(null);
 
   const dropdownRef = useRef(null);
   const { cartCount } = useCart();
 
-  /* ================= LOGIN CHECK ================= */
   useEffect(() => {
-    const checkUser = () => {
-      const storedUser = localStorage.getItem("user");
-      if (storedUser) {
-        setUser(JSON.parse(storedUser));
-      } else {
-        setUser(null);
-      }
-    };
-
-    checkUser();
-    window.addEventListener("storage", checkUser);
-    return () => window.removeEventListener("storage", checkUser);
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) setUser(JSON.parse(storedUser));
   }, []);
 
-  /* ================= OUTSIDE CLICK CLOSE (DESKTOP) ================= */
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target)
-      ) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setOpenAccount(false);
       }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
-    return () =>
-      document.removeEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+
   }, []);
 
-  /* ================= LOGOUT ================= */
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
@@ -64,228 +51,201 @@ export default function Header() {
   };
 
   return (
+
     <>
-      <header className="bg-yellow-400 sticky top-0 z-40 shadow-sm">
 
-        {/* ================= MOBILE ================= */}
-        <div className="md:hidden px-4 py-3">
+      <header className="sticky top-0 z-50 bg-white">
 
-          {/* Top Row */}
-          <div className="flex justify-between items-start">
+        {/* TOP BAR */}
 
-            <div className="flex items-center gap-1 text-xs text-black">
-              <span className="truncate max-w-[200px]">
-                Home - {location}
-              </span>
-              <ChevronDown size={14} />
-            </div>
+        <div className="bg-red-600 text-white text-sm text-center py-2">
+          Get free shipping on all orders over 500/- For bulk orders call us at +919311675300 →
+        </div>
 
-            <div className="flex items-center gap-3">
+        {/* MOBILE HEADER */}
 
-              {/* Cart */}
-              <button
-                className="relative"
-                onClick={() => setOpenCart(true)}
-              >
-                <ShoppingCart size={22} />
-                {cartCount > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-green-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
-                    {cartCount}
-                  </span>
-                )}
-              </button>
+        <div className="md:hidden flex items-center justify-between px-4 h-16 bg-white">
 
-              {/* User */}
+          <div className="flex items-center gap-4">
+
+            <button onClick={() => setOpenMenu(!openMenu)}>
+              {openMenu ? <X size={24} /> : <Menu size={24} />} </button>
+
+            <Search size={22} />
+
+          </div>
+
+          <Link href="/">
+            <img src="/assets/images/product/satmolalogo.png" className="h-10" />
+          </Link>
+
+          <button onClick={() => setOpenCart(true)} className="relative">
+
+            <ShoppingCart size={22} />
+
+            {cartCount > 0 && (<span className="absolute -top-2 -right-2 bg-black text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+              {cartCount} </span>
+            )}
+
+          </button>
+
+        </div>
+
+        {/* DESKTOP HEADER */}
+
+        <div className="hidden md:block">
+
+          <div className="max-w-[1250px] mx-auto flex items-center justify-between h-20 px-10">
+
+            <Search size={22} />
+
+            <Link href="/">
+              <img src="/assets/images/product/satmolalogo.png" className="h-14" />
+            </Link>
+
+            <div className="flex items-center gap-6">
+
               {!user ? (
+
                 <Link href="/auth/login">
                   <User size={22} />
                 </Link>
+
               ) : (
-                <button onClick={() => setOpenAccount(!openAccount)}>
-                  <User size={22} />
-                </button>
-              )}
 
-            </div>
-          </div>
+                <div ref={dropdownRef} className="relative">
 
-          {/* Search */}
-          <div className="mt-4">
-            <div className="flex items-center bg-white rounded-xl px-3 py-3 shadow-sm">
-              <Search size={18} className="text-gray-500" />
-              <input
-                type="text"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder='Search "butter"'
-                className="w-full outline-none px-2 text-sm"
-              />
-            </div>
-          </div>
+                  <User
+                    size={22}
+                    className="cursor-pointer"
+                    onClick={() => setOpenAccount(!openAccount)}
+                  />
 
-         {/* ================= FULL SCREEN MOBILE ACCOUNT ================= */}
-{openAccount && user && (
-  <div className="fixed inset-0 bg-gray-100 z-50 md:hidden flex flex-col">
+                  {openAccount && (
 
-    {/* Top Bar */}
-    <div className="bg-yellow-400 px-4 py-3 flex items-center justify-between">
-      <button
-        onClick={() => setOpenAccount(false)}
-        className="text-black text-lg font-semibold"
-      >
-        ←
-      </button>
+                    <div className="absolute right-0 mt-3 w-56 bg-white shadow-xl rounded-lg p-4">
 
-      <div className="text-center">
-        <p className="font-bold text-black">Delivery in 10 minutes</p>
-        <p className="text-xs text-black truncate max-w-[200px]">
-          Home - {location}
-        </p>
-      </div>
-
-      <div></div>
-    </div>
-
-    {/* Content */}
-    <div className="flex-1 overflow-y-auto px-4 py-6">
-
-      <p className="text-lg font-semibold mb-6">
-        {user.email}
-      </p>
-
-      <p className="text-gray-500 text-sm mb-4">
-        Your Information
-      </p>
-
-      <div className="space-y-4">
-
-        <Link href="/account/order" onClick={() => setOpenAccount(false)}
-          className="flex items-center gap-4 bg-white p-4 rounded-xl shadow-sm">
-          <span>📦</span> Order History
-        </Link>
-
-        <Link href="#" className="flex items-center gap-4 bg-white p-4 rounded-xl shadow-sm">
-          <span>📍</span> Address Book
-        </Link>
-
-        <Link href="#" className="flex items-center gap-4 bg-white p-4 rounded-xl shadow-sm">
-          <span>💳</span> Wallet Details
-        </Link>
-
-        <Link href="#" className="flex items-center gap-4 bg-white p-4 rounded-xl shadow-sm">
-          <span>📝</span> My Prescriptions
-        </Link>
-
-        <Link href="#" className="flex items-center gap-4 bg-white p-4 rounded-xl shadow-sm">
-          <span>🎁</span> E-Gift Cards
-        </Link>
-
-        <Link href="#" className="flex items-center gap-4 bg-white p-4 rounded-xl shadow-sm">
-          <span>🔒</span> Account Privacy
-        </Link>
-
-        <button
-          onClick={handleLogout}
-          className="flex items-center gap-4 bg-white p-4 rounded-xl shadow-sm text-red-600 w-full text-left"
-        >
-          🚪 Logout
-        </button>
-
-      </div>
-    </div>
-
-  </div>
-)}
-
-        </div>
-
-        {/* ================= DESKTOP ================= */}
-        <div className="hidden md:flex max-w-7xl mx-auto px-6 py-4 items-center justify-between">
-
-          <Link href="/" className="text-2xl font-bold text-black">
-            QuickCart
-          </Link>
-
-          {/* Search */}
-          <div className="flex-1 mx-8">
-            <div className="flex items-center bg-white rounded-lg px-3 py-2">
-              <Search size={18} className="text-gray-500" />
-              <input
-                type="text"
-                placeholder="Search for products..."
-                className="w-full outline-none px-2 text-sm"
-              />
-            </div>
-          </div>
-
-          {/* Right Section */}
-          <div className="flex items-center gap-6 relative">
-
-            {!user ? (
-              <Link href="/auth/login" className="font-semibold">
-                Login
-              </Link>
-            ) : (
-              <div className="relative" ref={dropdownRef}>
-                <button
-                  onClick={() => setOpenAccount(!openAccount)}
-                  className="flex items-center gap-2 font-semibold text-black hover:text-gray-700"
-                >
-                  <User size={18} />
-                  My Account
-                </button>
-
-                {openAccount && (
-                  <div className="absolute right-0 mt-3 w-64 bg-white shadow-xl rounded-lg p-4 z-50">
-
-                    <div className="border-b pb-3 mb-3">
-                      <p className="font-semibold text-gray-800">
-                        My Account
-                      </p>
-                      <p className="text-sm text-gray-500 truncate">
+                      <p className="font-semibold mb-2">
                         {user.email}
                       </p>
-                    </div>
 
-                    <div className="flex flex-col gap-3 text-sm text-gray-700">
-                      <Link href="/account/orders">My Orders</Link>
-                      <Link href="#">Saved Addresses</Link>
-                      <Link href="#">My Prescriptions</Link>
-                      <Link href="#">E-Gift Cards</Link>
-                      <Link href="#">FAQ's</Link>
-                      <Link href="#">Account Privacy</Link>
+                      <Link href="/account/orders" className="block mb-2">
+                        Orders
+                      </Link>
 
-                      <button
-                        onClick={handleLogout}
-                        className="text-left text-red-600 font-medium"
-                      >
-                        Log Out
+                      <button onClick={handleLogout} className="text-red-600">
+                        Logout
                       </button>
+
                     </div>
 
-                  </div>
-                )}
-              </div>
-            )}
+                  )}
 
-            {/* Cart */}
-            <button
-              onClick={() => setOpenCart(true)}
-              className="relative bg-black text-white px-4 py-2 rounded-lg flex items-center gap-2"
-            >
-              <ShoppingCart size={18} />
-              Cart
-              {cartCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-green-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
-                  {cartCount}
-                </span>
+                </div>
+
               )}
-            </button>
+
+              <button onClick={() => setOpenCart(true)} className="relative">
+
+                <ShoppingCart size={22} />
+
+                {cartCount > 0 && (<span className="absolute -top-2 -right-2 bg-black text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+                  {cartCount} </span>
+                )}
+
+              </button>
+
+            </div>
 
           </div>
+
+          {/* DESKTOP MENU */}
+
+          <div>
+
+            <div className="max-w-[1200px] mx-auto flex justify-center gap-10 py-4 text-sm font-medium">
+
+              <Link href="/">Home</Link>
+
+              <Link href="/collections/digestive" className="flex items-center gap-1">
+                Digestive <ChevronDown size={14} />
+              </Link>
+
+              <Link href="/collections/mouth-freshner">Mouth Fresheners</Link>
+
+              <Link href="/collections/namkeens">Namkeens</Link>
+
+              <Link href="/collections/sweets">Sweets</Link>
+
+              <Link href="/collections/free-shipping-combo-packs">Free Delivery Combo</Link>
+
+              <Link href="/collections/gift-packs">Gift Packs</Link>
+
+            </div>
+
+          </div>
+
         </div>
 
       </header>
+
+      {/* MOBILE SLIDE PANEL */}
+
+      <div className={`fixed top-[104px] left-0 h-[calc(100vh-104px)] w-full z-40 md:hidden transition-transform duration-300 ${openMenu ? "translate-x-0" : "-translate-x-full"}`}>
+
+        <div className="h-full bg-[#e7e5b7] flex flex-col">
+
+          <div className="flex-1 overflow-y-auto px-6 py-8 space-y-6 text-lg font-semibold">
+
+            <Link href="/" onClick={() => setOpenMenu(false)} className="block">
+              Home
+            </Link>
+
+            <Link href="/collections/digestive" onClick={() => setOpenMenu(false)} className="flex justify-between items-center">
+              Digestive
+              <ChevronRight size={18} />
+            </Link>
+
+            <Link href="/collections/mouth-freshner" onClick={() => setOpenMenu(false)} className="block">
+              Mouth Fresheners
+            </Link>
+
+            <Link href="/collections/namkeens" onClick={() => setOpenMenu(false)} className="block">
+              Namkeens
+            </Link>
+
+            <Link href="/collections/sweets" onClick={() => setOpenMenu(false)} className="block">
+              Sweets
+            </Link>
+
+            <Link href="/collections/free-shipping-combo-packs" onClick={() => setOpenMenu(false)} className="block">
+              Free Delivery Combo
+            </Link>
+
+            <Link href="/collections/gift-packs" onClick={() => setOpenMenu(false)} className="block">
+              Gift Packs
+            </Link>
+
+          </div>
+
+          <div className="px-6 py-6">
+
+            <Link href="/account" className="flex items-center gap-2 mb-4">
+              <User size={20} /> Account
+            </Link>
+
+            <div className="flex gap-6 text-xl">
+              <i className="fab fa-twitter"></i>
+              <i className="fab fa-facebook"></i>
+              <i className="fab fa-instagram"></i>
+              <i className="fab fa-youtube"></i>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
 
       <BottomCartBar onClick={() => setOpenCart(true)} />
 
@@ -293,6 +253,9 @@ export default function Header() {
         open={openCart}
         onClose={() => setOpenCart(false)}
       />
+
     </>
+
   );
+
 }

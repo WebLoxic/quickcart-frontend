@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useState } from "react";
 import products from "@/data/products";
-import ProductCard from "./ProductCard";
+import ProductCard from "../ProductCard";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 
 export default function ProductSection({ title, category }) {

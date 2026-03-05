@@ -1,74 +1,87 @@
 "use client";
-import Image from "next/image";
-import Link from "next/link";
+
+import { useEffect, useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function Banner() {
+
+  const banners = [
+    "/assets/images/product/banner1.webp",
+    "/assets/images/product/banner2.webp",
+    "/assets/images/product/banner3.webp",
+    "/assets/images/product/banner4.webp",
+    "/assets/images/product/banner5.webp"
+  ];
+
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+
+    const timer = setInterval(() => {
+
+      setCurrent(prev => prev === banners.length - 1 ? 0 : prev + 1);
+
+    }, 5000);
+
+    return () => clearInterval(timer);
+
+  }, []);
+
+  const nextSlide = () => {
+
+    setCurrent(current === banners.length - 1 ? 0 : current + 1);
+
+  };
+
+  const prevSlide = () => {
+
+    setCurrent(current === 0 ? banners.length - 1 : current - 1);
+
+  };
+
   return (
-    <section className="hidden md:block max-w-7xl mx-auto px-4 mt-6">
 
-      {/* 🔥 Main Green Banner */}
-      <div className="relative bg-green-700 rounded-2xl overflow-hidden p-8 md:p-12 flex flex-col md:flex-row items-center justify-between">
+    <section className="max-w-[1250px] mx-auto mt-4 px-3">
 
-        {/* Left Content */}
-        <div className="text-white max-w-xl space-y-4 z-10">
-          <h1 className="text-3xl md:text-5xl font-bold leading-tight">
-            Stock up on daily essentials
-          </h1>
+      <div className="relative overflow-hidden rounded-lg">
 
-          <p className="text-lg text-green-100">
-            Get farm-fresh goodness & a range of exotic fruits, vegetables,
-            eggs & more
-          </p>
+        <div
+          className="flex transition-transform duration-700 ease-in-out"
+          style={{ transform: `translateX(-${current * 100}%)` }}
+        >
 
-          <Link
-            href="/shop"
-            className="inline-block bg-white text-green-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
-          >
-            Shop Now
-          </Link>
-        </div>
-
-        {/* Right Image */}
-        <div className="relative w-full md:w-[400px] h-56 md:h-72 mt-6 md:mt-0">
-          <Image
-            src="https://images.unsplash.com/photo-1610348725531-843dff563e2c"
-            alt="Groceries"
-            fill
-            className="object-contain"
+          {banners.map((img, index) => (<img
+            key={index}
+            src={img}
+            className="w-full flex-shrink-0 object-cover h-[180px] md:h-auto"
+            alt="banner"
           />
-        </div>
-      </div>
+          ))}
 
-      {/* 🔥 3 Small Promo Cards */}
-      <div className="grid md:grid-cols-3 gap-6 mt-8">
-        <div className="relative bg-teal-500 text-white rounded-2xl p-6">
-          <h3 className="text-xl font-semibold">
-            Pharmacy at your doorstep!
-          </h3>
-          <p className="text-sm mt-2">
-            Cough syrups, pain relief sprays & more
-          </p>
         </div>
 
-        <div className="relative bg-yellow-400 rounded-2xl p-6">
-          <h3 className="text-xl font-semibold text-gray-900">
-            Pet care supplies at your door
-          </h3>
-          <p className="text-sm mt-2 text-gray-700">
-            Food, treats, toys & more
-          </p>
-        </div>
+        <button
+          onClick={prevSlide}
+          className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2"
 
-        <div className="relative bg-gray-200 rounded-2xl p-6">
-          <h3 className="text-xl font-semibold text-gray-900">
-            No time for a diaper run?
-          </h3>
-          <p className="text-sm mt-2 text-gray-600">
-            Get baby care essentials
-          </p>
-        </div>
+        >
+
+          <ChevronLeft size={20} />
+        </button>
+
+        <button
+          onClick={nextSlide}
+          className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2"
+
+        >
+
+          <ChevronRight size={20} />
+        </button>
+
       </div>
 
     </section>
+
   );
+
 }

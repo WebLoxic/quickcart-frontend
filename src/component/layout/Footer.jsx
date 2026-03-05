@@ -1,102 +1,192 @@
+"use client";
+
 import Link from "next/link";
-import { Facebook, Instagram, Twitter } from "lucide-react";
+import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 
 export default function Footer() {
+
   return (
-    <footer className="bg-gray-50 border-t border-gray-200 mt-20">
 
-      <div className="max-w-7xl mx-auto px-6 py-16">
+    <footer className="bg-[#c63d3d] text-white mt-20">
 
-        {/* TOP GRID */}
+      <div className="max-w-[1250px] mx-auto px-6 py-16">
+
+        {/* GRID */}
+
         <div className="grid grid-cols-2 md:grid-cols-5 gap-10">
 
-          {/* LOGO + ABOUT */}
+          {/* LOGO SECTION */}
+
           <div className="col-span-2 md:col-span-1">
-            <h3 className="text-2xl font-bold text-black mb-4">
-              QuickCart
-            </h3>
-            <p className="text-sm text-gray-600 leading-relaxed">
-              Your everyday grocery partner. Fresh products delivered
-              fast and safely at your doorstep.
+
+            <img
+              src="/assets/images/product/satmolalogo.png"
+              className="h-12 mb-4"
+            />
+
+            <p className="text-sm mb-6">
+              SSG Pharma Pvt. Ltd.
             </p>
-          </div>
 
-          {/* COMPANY */}
-          <div>
-            <h4 className="font-semibold text-black mb-4">
-              Company
-            </h4>
-            <ul className="space-y-3 text-sm text-gray-600">
-              <li><Link href="#">About Us</Link></li>
-              <li><Link href="#">Careers</Link></li>
-              <li><Link href="#">Blog</Link></li>
-              <li><Link href="#">Press</Link></li>
-            </ul>
-          </div>
+            <div className="flex gap-4">
 
-          {/* SUPPORT */}
-          <div>
-            <h4 className="font-semibold text-black mb-4">
-              Support
-            </h4>
-            <ul className="space-y-3 text-sm text-gray-600">
-              <li><Link href="#">Help Center</Link></li>
-              <li><Link href="#">Privacy Policy</Link></li>
-              <li><Link href="#">Terms & Conditions</Link></li>
-              <li><Link href="#">Refund Policy</Link></li>
-            </ul>
-          </div>
+              <Facebook size={18} />
+              <Instagram size={18} />
+              <Youtube size={18} />
+              <Twitter size={18} />
 
-          {/* CONTACT */}
-          <div>
-            <h4 className="font-semibold text-black mb-4">
-              Contact
-            </h4>
-            <ul className="space-y-3 text-sm text-gray-600">
-              <li>Email: support@quickcart.com</li>
-              <li>Phone: +91 98765 43210</li>
-              <li>Address: Sonipat, Haryana</li>
-            </ul>
-          </div>
-
-          {/* APP DOWNLOAD */}
-          <div>
-            <h4 className="font-semibold text-black mb-4">
-              Download App
-            </h4>
-
-            <div className="space-y-3">
-              <button className="w-full bg-black text-white py-2 rounded-lg text-sm">
-                Download on App Store
-              </button>
-
-              <button className="w-full bg-black text-white py-2 rounded-lg text-sm">
-                Get it on Google Play
-              </button>
             </div>
+
+          </div>
+
+          {/* MENU 1 */}
+
+          <div>
+
+            <h4 className="font-semibold mb-4">
+              Menu
+            </h4>
+
+            <ul className="space-y-3 text-sm">
+
+              <li>
+                <Link href="/collections/digestive">
+                  Tasty & Digestive Candy
+                </Link>
+              </li>
+
+              <li>
+                <Link href="/collections/namkeens">
+                  Namkeens
+                </Link>
+              </li>
+
+              <li>
+                <Link href="/collections/sweets">
+                  Sweets
+                </Link>
+              </li>
+
+              <li>
+                <Link href="/collections/digestive">
+                  Digestive Candy JAR
+                </Link>
+              </li>
+
+              <li>
+                <Link href="/collections/mouth-freshner">
+                  Mouth Freshener
+                </Link>
+              </li>
+
+            </ul>
+
+          </div>
+
+          {/* MENU 2 */}
+
+          <div>
+
+            <h4 className="font-semibold mb-4">
+              Menu
+            </h4>
+
+            <ul className="space-y-3 text-sm">
+
+              <li>
+                <Link href="/collections/free-shipping-combo-packs">
+                  Free Shipping Combo
+                </Link>
+              </li>
+
+              <li>
+                <Link href="/collections/gift-packs">
+                  Special Combo
+                </Link>
+              </li>
+
+            </ul>
+
+          </div>
+
+          {/* CORPORATE */}
+
+          <div>
+
+            <h4 className="font-semibold mb-4">
+              Corporate
+            </h4>
+
+            <ul className="space-y-3 text-sm">
+
+              <li>
+                <Link href="#">
+                  Contact Us
+                </Link>
+              </li>
+
+              <li>
+                <Link href="#">
+                  Dealership Form
+                </Link>
+              </li>
+
+            </ul>
+
+          </div>
+
+          {/* POLICIES */}
+
+          <div>
+
+            <h4 className="font-semibold mb-4">
+              Policies
+            </h4>
+
+            <ul className="space-y-3 text-sm">
+
+              <li>
+                <Link href="#">
+                  Shipping Policy
+                </Link>
+              </li>
+
+              <li>
+                <Link href="#">
+                  Refund Policy
+                </Link>
+              </li>
+
+              <li>
+                <Link href="#">
+                  Privacy Policy
+                </Link>
+              </li>
+
+              <li>
+                <Link href="#">
+                  Terms & Conditions
+                </Link>
+              </li>
+
+            </ul>
+
           </div>
 
         </div>
 
         {/* DIVIDER */}
-        <div className="border-t border-gray-200 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
 
-          {/* COPYRIGHT */}
-          <p className="text-sm text-gray-500 text-center md:text-left">
-            © {new Date().getFullYear()} QuickCart. All rights reserved.
-          </p>
+        <div className="border-t border-red-300 mt-14 pt-6 text-center text-sm">
 
-          {/* SOCIAL ICONS */}
-          <div className="flex items-center gap-4 text-gray-600">
-            <Facebook size={18} className="cursor-pointer hover:text-black" />
-            <Instagram size={18} className="cursor-pointer hover:text-black" />
-            <Twitter size={18} className="cursor-pointer hover:text-black" />
-          </div>
+          © 2026 Satmola. All Rights Reserved.
 
         </div>
 
       </div>
 
     </footer>
+
   );
+
 }

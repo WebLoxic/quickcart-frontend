@@ -1,535 +1,290 @@
 const products = [
 
-  // 🥛 Dairy, Bread & Eggs Category
 {
-  id: 1,
-  name: "Amul Gold Full Cream Milk",
-  weight: "1 L",
-  price: 69,
-  category: "Dairy, Bread & Eggs",
-  images: [
-    "/assets/images/product/milk1.webp",
-    "/assets/images/product/milk2.webp",
-    "/assets/images/product/milk3.webp",
-    "/assets/images/product/milk4.webp",
-    "/assets/images/product/milk5.webp"
-  ]
-},
-  {
-    id: 2,
-    name: "Amul Taaza Toned Milk",
-    weight: "500 ml",
-    price: 29,
-    category: "Dairy, Bread & Eggs",
-    image: "/assets/images/product/amul1.png",
-  },
-  {
-    id: 3,
-    name: "Amul Salted Butter",
-    weight: "100 g",
-    price: 58,
-    category: "Dairy, Bread & Eggs",
-    image: "/assets/images/product/amulbutter.png",
-  },
-  {
-    id: 4,
-    name: "Harvest Gold 100% Atta Whole Wheat Bread",
-    weight: "450 g",
-    price: 60,
-    category: "Dairy, Bread & Eggs",
-    image: "/assets/images/product/gold.png",
-  },
-  {
-    id: 5,
-    name: "Mother Dairy Classic Pouch Curd",
-    weight: "390 g",
-    price: 35,
-    category: "Dairy, Bread & Eggs",
-    image: "/assets/images/product/motherdairy.png",
-  },
-  {
-    id: 6,
-    name: "Mother Dairy Cow Milk",
-    weight: "500 ml",
-    price: 30,
-    category: "Dairy, Bread & Eggs",
-    image: "/assets/images/product/motherdairy2.png",
-  },
-  {
-    id: 7,
-    name: "Harvest Gold White Bread",
-    weight: "350 g",
-    price: 30,
-    category: "Dairy, Bread & Eggs",
-    image: "/assets/images/product/whitebread.png",
-  },
-  {
-    id: 8,
-    name: "Amul Fresh Cream",
-    weight: "250 ml",
-    price: 65,
-    category: "Dairy, Bread & Eggs",
-    image: "/assets/images/product/motherdairy3.png",
-  },
-  {
-    id: 9,
-    name: "Eggs (Farm Fresh)",
-    weight: "12 pcs",
-    price: 72,
-    category: "Dairy, Bread & Eggs",
-    image: "/assets/images/product/motherdairy4.png",
-  },
-  {
-    id: 10,
-    name: "Britannia Brown Bread",
-    weight: "400 g",
-    price: 55,
-    category: "Dairy, Bread & Eggs",
-    image: "/assets/images/product/curd.png",
-  },
-
-  // 🚬 Rolling Paper & Tobacco Category
-  {
-    id: 101,
-    name: "Perfect Rolled Cones (Natural)",
-    weight: "3 pcs",
-    price: 45,
-    category: "Rolling paper & tobacco",
-    image: "/assets/images/product/roll1.png",
-  },
-  {
-    id: 102,
-    name: "Ultimate Rolling Paper with Filter Tips",
-    weight: "32 pcs",
-    price: 90,
-    category: "Rolling paper & tobacco",
-    image: "/assets/images/product/roll2.png",
-  },
-  {
-    id: 103,
-    name: "White Thin Rolling Paper (King Size)",
-    weight: "32 pcs",
-    price: 79,
-    category: "Rolling paper & tobacco",
-    image: "/assets/images/product/roll3.png",
-  },
-  {
-    id: 104,
-    name: "Pre-Rolled Rose Blunt Rolling Paper",
-    weight: "1 pc",
-    price: 120,
-    category: "Rolling paper & tobacco",
-    image: "/assets/images/product/roll4.png",
-  },
-  {
-    id: 104,
-    name: "Perfect Rolled Cones (Natural)",
-    weight: "3 pcs",
-    price: 45,
-    category: "Rolling paper & tobacco",
-    image: "/assets/images/product/roll8.png",
-  },
-  {
-    id: 105,
-    name: "Ultimate Rolling Paper with Filter Tips",
-    weight: "32 pcs",
-    price: 90,
-    category: "Rolling paper & tobacco",
-    image: "/assets/images/product/roll7.png",
-  },
-  {
-    id: 106,
-    name: "White Thin Rolling Paper (King Size)",
-    weight: "32 pcs",
-    price: 79,
-    category: "Rolling paper & tobacco",
-    image: "/assets/images/product/role6.png",
-  },
-  {
-    id: 107,
-    name: "Pre-Rolled Rose Blunt Rolling Paper",
-    weight: "1 pc",
-    price: 120,
-    category: "Rolling paper & tobacco",
-    image: "/assets/images/product/roll7.png",
-  },
-
-  // 🍿 Snacks & Munchies Category
-{
-  id: 201,
-  name: "Lo! Foods Gluten Free Millet Ragi Chips",
-  weight: "75 g",
-  price: 99,
-  originalPrice: null,
-  discount: "61% OFF",
-  category: "Snacks & Munchies",
-  image: "/assets/images/product/snacks1.png",
-},
-{
-  id: 202,
-  name: "Moi Soi White Rice Paper (22cm)",
-  weight: "100 g",
-  price: 74,
-  originalPrice: 190,
-  discount: "61% OFF",
-  category: "Snacks & Munchies",
-  image: "/assets/images/product/snacks2.png",
-},
-{
-  id: 203,
-  name: "Red Rock Deli Kettle Chips",
-  weight: "58 g",
-  price: 51,
-  originalPrice: 60,
-  discount: "15% OFF",
-  category: "Snacks & Munchies",
-  image: "/assets/images/product/snacks3.png",
-},
-{
-  id: 204,
-  name: "Beanly Choco Hazelnut Spread",
-  weight: "52 g",
-  price: 99,
-  originalPrice: 133,
-  discount: "25% OFF",
-  category: "Snacks & Munchies",
-  image: "/assets/images/product/snacks4.png",
-},
-{
-  id: 205,
-  name: "Protein Chef Baked Coated Peanuts",
-  weight: "50 g",
-  price: 69,
-  originalPrice: 70,
-  discount: "15% OFF",
-  category: "Snacks & Munchies",
-  image: "/assets/images/product/snacks5.png",
-},
-{
-  id: 206,
-  name: "Red Rock Deli Potato Chips",
-  weight: "53 g",
-  price: 51,
-  originalPrice: 60,
-  discount: "15% OFF",
-  category: "Snacks & Munchies",
-  image: "/assets/images/product/snacks6.png",
+id: 1001,
+name: "Satmola Digestive Tablet Pouch – Tasty Digestive Tablets (Pack of 5)",
+price: 100,
+category: "Digestive Candy",
+image: "/assets/images/product/digest1.webp"
 },
 
-// 🪔 Hookah Category
 {
-  id: 301,
-  name: "Coconut Shell Hookah Coal by Cocoyaya",
-  weight: "250 g",
-  price: 150,
-  originalPrice: null,
-  discount: null,
-  category: "Hookah",
-  image: "/assets/images/product/hookah1.png",
+id: 1002,
+name: "Aam Papad Pouches – Chatpata Khatta Meetha Candy",
+price: 150,
+category: "Digestive Candy",
+image: "/assets/images/product/digest2.webp"
 },
 {
-  id: 302,
-  name: "Premium Magic Coal by Stash Pro",
-  weight: "10 pcs",
-  price: 70,
-  originalPrice: 80,
-  discount: "12% OFF",
-  category: "Hookah",
-  image: "/assets/images/product/hookah9.png",
-},
-{
-  id: 303,
-  name: "Mouth Filter Tips for Filters by Afzal",
-  weight: "5 pcs",
-  price: 39,
-  originalPrice: null,
-  discount: null,
-  category: "Hookah",
-  image: "/assets/images/product/hookah3.png",
-},
-{
-  id: 304,
-  name: "Coconut Hookah Coal Cubes by Stash Pro",
-  weight: "250 g",
-  price: 180,
-  originalPrice: null,
-  discount: null,
-  category: "Hookah",
-  image: "/assets/images/product/hookah4.png",
-},
-{
-  id: 305,
-  name: "Tachi Bana Hookah by Cocoyaya",
-  weight: "1 pc",
-  price: 4890,
-  originalPrice: null,
-  discount: null,
-  category: "Hookah",
-  image: "/assets/images/product/hookah5.png",
-},
-{
-  id: 306,
-  name: "Coconut Shell Hookah Coal by Cocoyaya",
-  weight: "250 g",
-  price: 150,
-  originalPrice: null,
-  discount: null,
-  category: "Hookah",
-  image: "/assets/images/product/hookah6.png",
-},
-{
-  id: 307,
-  name: "Premium Magic Coal by Stash Pro",
-  weight: "10 pcs",
-  price: 70,
-  originalPrice: 80,
-  discount: "12% OFF",
-  category: "Hookah",
-  image: "/assets/images/product/hookah7.png",
-},
-{
-  id: 308,
-  name: "Mouth Filter Tips for Filters by Afzal",
-  weight: "5 pcs",
-  price: 39,
-  originalPrice: null,
-  discount: null,
-  category: "Hookah",
-  image: "/assets/images/product/hookah8.png",
-},
-{
-  id: 309,
-  name: "Coconut Hookah Coal Cubes by Stash Pro",
-  weight: "250 g",
-  price: 180,
-  originalPrice: null,
-  discount: null,
-  category: "Hookah",
-  image: "/assets/images/product/hookah9.png",
-},
-{
-  id: 310,
-  name: "Tachi Bana Hookah by Cocoyaya",
-  weight: "1 pc",
-  price: 4890,
-  originalPrice: null,
-  discount: null,
-  category: "Hookah",
-  image: "/assets/images/product/hookah10.png",
+id: 1003,
+name: "Chata Chat Goliyan Tangy & Spicy Candy",
+price: 150,
+category: "Digestive Candy",
+image: "/assets/images/product/digest3.webp"
 },
 
-// 🍃 Mouth Fresheners Category
+
 {
-  id: 401,
-  name: "Rajnigandha Silver Pearl Elaichi",
-  weight: "5.75 g",
-  price: 60,
-  originalPrice: null,
-  discount: null,
-  category: "Mouth fresheners",
-  image: "/assets/images/product/freshner1.png",
+id: 1004,
+name: "Chata Chat Goliyan Tangy & Spicy Candy",
+price: 150,
+category: "Digestive Candy",
+image: "/assets/images/product/digest4.webp"
 },
 {
-  id: 402,
-  name: "Spraymint Icymint Mouth Spray",
-  weight: "15 g",
-  price: 85,
-  originalPrice: 99,
-  discount: "14% OFF",
-  category: "Mouth fresheners",
-  image: "/assets/images/product/freshner1.png",
-},
-{
-  id: 403,
-  name: "Trident Original Flavour Chewing Gum",
-  weight: "14 pcs",
-  price: 150,
-  originalPrice: null,
-  discount: null,
-  category: "Mouth fresheners",
-  image: "/assets/images/product/freshner2.png",
-},
-{
-  id: 404,
-  name: "Only Anardana Digestive Goli",
-  weight: "180 g",
-  price: 128,
-  originalPrice: 159,
-  discount: "19% OFF",
-  category: "Mouth fresheners",
-  image: "/assets/images/product/freshner3.png",
-},
-{
-  id: 405,
-  name: "Perfora Mouth Spray - Instant Fresh Breath",
-  weight: "10 ml",
-  price: 159,
-  originalPrice: null,
-  discount: null,
-  category: "Mouth fresheners",
-  image: "/assets/images/product/freshner4.png",
-},
-{
-  id: 406,
-  name: "Rajnigandha Silver Pearl Elaichi",
-  weight: "5.75 g",
-  price: 60,
-  originalPrice: null,
-  discount: null,
-  category: "Mouth fresheners",
-  image: "/assets/images/product/freshner1.png",
-},
-{
-  id: 407,
-  name: "Spraymint Icymint Mouth Spray",
-  weight: "15 g",
-  price: 85,
-  originalPrice: 99,
-  discount: "14% OFF",
-  category: "Mouth fresheners",
-  image: "/assets/images/product/freshner1.png",
-},
-{
-  id: 408,
-  name: "Trident Original Flavour Chewing Gum",
-  weight: "14 pcs",
-  price: 150,
-  originalPrice: null,
-  discount: null,
-  category: "Mouth fresheners",
-  image: "/assets/images/product/freshner2.png",
-},
-{
-  id: 409,
-  name: "Only Anardana Digestive Goli",
-  weight: "180 g",
-  price: 128,
-  originalPrice: 159,
-  discount: "19% OFF",
-  category: "Mouth fresheners",
-  image: "/assets/images/product/freshner3.png",
-},
-{
-  id: 410,
-  name: "Perfora Mouth Spray - Instant Fresh Breath",
-  weight: "10 ml",
-  price: 159,
-  originalPrice: null,
-  discount: null,
-  category: "Mouth fresheners",
-  image: "/assets/images/product/freshner4.png",
-},
-// 🥤 Cold Drinks & Juices
-{
-  id: 501,
-  name: "Bisleri Packaged Water",
-  weight: "10 L",
-  price: 108,
-  category: "Cold Drinks & Juices",
-  image: "/assets/images/product/coldrink1.png",
-},
-{
-  id: 502,
-  name: "Coca-Cola Diet Coke Soft Drink",
-  weight: "300 ml",
-  price: 40,
-  category: "Cold Drinks & Juices",
-  image: "/assets/images/product/coldrink2.png",
-},
-{
-  id: 503,
-  name: "Coca-Cola Soft Drink (Pack of 4)",
-  weight: "4 x 750 ml",
-  price: 159,
-  originalPrice: 160,
-  discount: "1% OFF",
-  category: "Cold Drinks & Juices",
-  image: "/assets/images/product/coldrink3.png",
-},
-{
-  id: 504,
-  name: "Mother Dairy Probiotic Tadka Buttermilk",
-  weight: "270 ml",
-  price: 10,
-  category: "Cold Drinks & Juices",
-  image: "/assets/images/product/coldrink4.png",
-},
-{
-  id: 505,
-  name: "Thums Up Soft Drink",
-  weight: "750 ml",
-  price: 40,
-  category: "Cold Drinks & Juices",
-  image: "/assets/images/product/coldrink5.png",
-},
-{
-  id: 506,
-  name: "Limca Lemon N Lime Soft Drink",
-  weight: "750 ml",
-  price: 39,
-  originalPrice: 40,
-  discount: "2% OFF",
-  category: "Cold Drinks & Juices",
-  image: "/assets/images/product/coldrink6.png",
+id: 1005,
+name: "Chata Chat Goliyan Tangy & Spicy Candy",
+price: 150,
+category: "Digestive Candy",
+image: "/assets/images/product/digest5.webp"
 },
 
-// 🍬 Candies & Gums
+
+
+
+
+// namkeens
+
+
 {
-  id: 601,
-  name: "Orbit Mixed Fruit Flavour Chewing Gum",
-  weight: "19.8 g",
-  price: 45,
-  category: "Candies & Gums",
-  image: "/assets/images/product/candy1.png",
+id: 2001,
+name: "Paneer Bhujia Namkeen – India's First Authentic Sweet Paneer Bhujia 300g",
+price: 180,
+category: "Namkeens",
+image: "/assets/images/product/namkeen1.webp"
 },
+
 {
-  id: 602,
-  name: "Chupa Chups Sour Bites Mixed Fruit Candy",
-  weight: "61.6 g",
-  price: 34,
-  originalPrice: 35,
-  discount: "3% OFF",
-  category: "Candies & Gums",
-  image: "/assets/images/product/candy2.png",
+id: 2002,
+name: "Lite Mixture Namkeen – Satmola Lite Mixture 160g | Pack of 3",
+price: 200,
+originalPrice: 210,
+discount: "4% OFF",
+category: "Namkeens",
+image: "/assets/images/product/namkeen2.webp"
 },
+
 {
-  id: 603,
-  name: "Parle Poppins Candy",
-  weight: "100 g",
-  price: 23,
-  originalPrice: 28,
-  discount: "17% OFF",
-  category: "Candies & Gums",
-  image: "/assets/images/product/candy3.png",
+id: 2003,
+name: "Cornflakes Namkeen | Crunchy & Chatpata Snack",
+price: 85,
+category: "Namkeens",
+image: "/assets/images/product/namkeen3.webp"
 },
+
 {
-  id: 604,
-  name: "Sour Punk Cola Flavour Stick Candy",
-  weight: "40 g",
-  price: 40,
-  category: "Candies & Gums",
-  image: "/assets/images/product/candy4.png",
+id: 2004,
+name: "Kaju Mixture Namkeen 200g – Crunchy & Delicious Snack",
+price: 160,
+category: "Namkeens",
+image: "/assets/images/product/namkeen4.webp"
 },
+
 {
-  id: 605,
-  name: "Boomer Krunch Strawberry Chewing Gum",
-  weight: "28.8 g",
-  price: 43,
-  originalPrice: 45,
-  discount: "5% OFF",
-  category: "Candies & Gums",
-  image: "/assets/images/product/candy5.png",
+id: 2005,
+name: "Salted Peanut Namkeen 150g | Crunchy & Classic Snack",
+price: 85,
+category: "Namkeens",
+image: "/assets/images/product/namkeen5.webp"
 },
+
+
+
+
+
+
+// 🎁 Gift Packs
+
 {
-  id: 606,
-  name: "Pulse Kachcha Mango Candy",
-  weight: "190 g",
-  price: 57,
-  originalPrice: 60,
-  discount: "5% OFF",
-  category: "Candies & Gums",
-  image: "/assets/images/product/candy6.png",
+id: 3001,
+name: "Festive Combo – Paneer Bhujia Namkeen & Anardana Candy (Pack of 2)",
+price: 294,
+originalPrice: 310,
+discount: "5% OFF",
+category: "Gift Packs",
+image: "/assets/images/product/combo1.webp"
 },
+
+{
+id: 3002,
+name: "Festive Combo – Hot Spicy Mixture Namkeen & Imli Candy (Pack of 2)",
+price: 294,
+originalPrice: 310,
+discount: "5% OFF",
+category: "Gift Packs",
+image: "/assets/images/product/combo2.webp"
+},
+
+{
+id: 3003,
+name: "Festive Combo – Corn Peanut Namkeen & Jeera Goli Candy (Pack of 2)",
+price: 294,
+originalPrice: 310,
+discount: "5% OFF",
+category: "Gift Packs",
+image: "/assets/images/product/combo3.webp"
+},
+
+{
+id: 3004,
+name: "Festive Combo – Navrattan Mix Namkeen & Aam Papad Candy (Pack of 2)",
+price: 294,
+originalPrice: 310,
+discount: "5% OFF",
+category: "Gift Packs",
+image: "/assets/images/product/combo4.webp"
+},
+
+
+// 🚚 Free Shipping Combo
+
+{
+id: 4001,
+name: "Lite Mixture Namkeen Pack of 3 – Crunchy & Spicy Snack Combo",
+price: 210,
+category: "Free Shipping Combo",
+image: "/assets/images/product/freeship1.webp"
+},
+
+{
+id: 4002,
+name: "Hot Spicy Mixture Pack of 3 – Bold & Flavorful Snack",
+price: 255,
+category: "Free Shipping Combo",
+image: "/assets/images/product/freeship2.webp"
+},
+
+{
+id: 4003,
+name: "Shahi Mix (Pack of 3) – Rich & Spiced Namkeen",
+price: 255,
+category: "Free Shipping Combo",
+image: "/assets/images/product/freeship3.webp"
+},
+
+{
+id: 4004,
+name: "Tasty Nuts Pack of 3 – Crunchy & Savory Nut Mix",
+price: 255,
+category: "Free Shipping Combo",
+image: "/assets/images/product/freeship4.webp"
+},
+
+// Sweets Sections
+// 🍬 Sweets
+
+{
+id: 3501,
+name: "Satmola Gulab Jamun – Soft & Juicy Indian Sweet (1Kg)",
+price: 299,
+category: "Sweets",
+image: "/assets/images/product/sweets1.webp"
+},
+
+{
+id: 3502,
+name: "Satmola Soan Papdi Vanaspati 400g (Pack of 2)",
+price: 399,
+category: "Sweets",
+image: "/assets/images/product/sweets2.webp"
+},
+
+{
+id: 3503,
+name: "Satmola Rasgulla – Soft & Spongy Indian Sweet",
+price: 299,
+category: "Sweets",
+image: "/assets/images/product/sweets3.webp"
+},
+
+
+
+
+
+
+// Mouth-Freshners
+
+
+{
+id: 5001,
+name: "Satmola Classic Mukhwas – Refreshing Mouth Freshener",
+price: 120,
+category: "Mouth Freshner",
+image: "/assets/images/product/freshner1.png"
+},
+
+{
+id: 5002,
+name: "Satmola Saunf Mix – Sweet & Crunchy Mouth Freshener",
+price: 110,
+category: "Mouth Freshner",
+image: "/assets/images/product/freshner2.png"
+},
+
+{
+id: 5003,
+name: "Satmola Elaichi Mix – Premium Cardamom Mouth Freshener",
+price: 150,
+category: "Mouth Freshner",
+image: "/assets/images/product/freshner3.png"
+},
+
+{
+id: 5004,
+name: "Satmola Meetha Pan Mukhwas – Traditional Mouth Freshener",
+price: 130,
+category: "Mouth Freshner",
+image: "/assets/images/product/freshner4.png"
+},
+
+{
+id: 5005,
+name: "Satmola Royal Mukhwas – Premium After Meal Freshener",
+price: 160,
+category: "Mouth Freshner",
+image: "/assets/images/product/freshner5.png"
+},
+
+{
+id: 5006,
+name: "Satmola Sugar Coated Saunf – Sweet Mouth Freshener",
+price: 100,
+category: "Mouth Freshner",
+image: "/assets/images/product/freshner6.png"
+},
+
+{
+id: 5007,
+name: "Satmola Silver Mukhwas – Rich & Refreshing Taste",
+price: 170,
+category: "Mouth Freshner",
+image: "/assets/images/product/freshner7.png"
+},
+
+{
+id: 5008,
+name: "Satmola Pan Flavour Mukhwas – Aromatic Freshener",
+price: 140,
+category: "Mouth Freshner",
+image: "/assets/images/product/freshner8.png"
+},
+
+{
+id: 5009,
+name: "Satmola Digestive Mukhwas Mix – Refreshing After Meal",
+price: 150,
+category: "Mouth Freshner",
+image: "/assets/images/product/freshner9.png"
+},
+
+{
+id: 5010,
+name: "Satmola Special Mukhwas – Premium Mouth Freshener",
+price: 180,
+category: "Mouth Freshner",
+image: "/assets/images/product/freshner10.png"
+}
+
 ];
 
 export default products;
