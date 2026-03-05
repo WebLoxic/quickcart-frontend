@@ -2,6 +2,7 @@
 
 import products from "@/data/products";
 import { useCart } from "@/context/CartContext";
+import Link from "next/link";
 
 export default function SweetsSection() {
 
@@ -20,7 +21,6 @@ export default function SweetsSection() {
             <h2 className="text-center text-2xl md:text-3xl font-semibold mb-10">
                 DELIGHTFUL SWEET TREATS
             </h2>
-
 
             {/* Products */}
 
@@ -42,15 +42,19 @@ export default function SweetsSection() {
 
                             {/* Image */}
 
-                            <div className="bg-gray-50 p-4 mb-3">
+                            <Link href={`/product/${product.slug || product.id}`}>
 
-                                <img
-                                    src={imageSrc}
-                                    className="h-[180px] w-full object-contain mx-auto"
-                                />
+                                <div className="bg-gray-50 p-4 mb-3 cursor-pointer">
 
-                            </div>
+                                    <img
+                                        src={imageSrc}
+                                        alt={product.name}
+                                        className="h-[180px] w-full object-contain mx-auto"
+                                    />
 
+                                </div>
+
+                            </Link>
 
                             {/* Sold out badge */}
 
@@ -62,15 +66,15 @@ export default function SweetsSection() {
 
                             )}
 
-
                             {/* Name */}
 
-                            <h3 className="text-sm leading-snug min-h-[40px] mb-2">
+                            <Link href={`/product/${product.slug || product.id}`}>
 
-                                {product.name}
+                                <h3 className="text-sm leading-snug min-h-[40px] mb-2 hover:underline cursor-pointer">
+                                    {product.name}
+                                </h3>
 
-                            </h3>
-
+                            </Link>
 
                             {/* Price */}
 
@@ -98,15 +102,12 @@ export default function SweetsSection() {
 
                             </div>
 
-
                             {/* Button */}
 
                             {product.soldOut ? (
 
                                 <button className="border border-gray-300 w-full py-3 text-gray-400">
-
                                     Sold out
-
                                 </button>
 
                             ) : (
@@ -115,9 +116,7 @@ export default function SweetsSection() {
                                     onClick={() => addToCart(product)}
                                     className="border border-gray-400 w-full py-3 hover:bg-black hover:text-white transition"
                                 >
-
                                     Add to cart
-
                                 </button>
 
                             )}

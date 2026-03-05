@@ -2,6 +2,7 @@
 
 import products from "@/data/products";
 import { useCart } from "@/context/CartContext";
+import Link from "next/link";
 
 export default function NamkeenSection() {
 
@@ -43,20 +44,29 @@ export default function NamkeenSection() {
 
                             {/* Image */}
 
-                            <div className="h-[180px] flex items-center justify-center">
+                            <Link href={`/product/${product.slug || product.id}`}>
 
-                                <img
-                                    src={imageSrc}
-                                    className="max-h-full object-contain"
-                                />
+                                <div className="h-[180px] flex items-center justify-center cursor-pointer">
 
-                            </div>
+                                    <img
+                                        src={imageSrc}
+                                        alt={product.name}
+                                        className="max-h-full object-contain"
+                                    />
+
+                                </div>
+
+                            </Link>
 
                             {/* Name */}
 
-                            <h3 className="text-sm leading-snug mt-3 line-clamp-2 min-h-[40px]">
-                                {product.name}
-                            </h3>
+                            <Link href={`/product/${product.slug || product.id}`}>
+
+                                <h3 className="text-sm leading-snug mt-3 line-clamp-2 min-h-[40px] hover:underline cursor-pointer">
+                                    {product.name}
+                                </h3>
+
+                            </Link>
 
                             {/* Price */}
 
@@ -71,11 +81,8 @@ export default function NamkeenSection() {
                                 <button
                                     onClick={() => addToCart(product)}
                                     className="border border-gray-400 w-full py-3 hover:bg-black hover:text-white transition"
-
                                 >
-
                                     Add to cart
-
                                 </button>
 
                             </div>
@@ -92,16 +99,12 @@ export default function NamkeenSection() {
 
             <div className="flex justify-center mt-10">
 
-                <a
+                <Link
                     href="/collections/namkeens"
-                    target="_blank"
                     className="border border-gray-400 px-10 py-3 hover:bg-black hover:text-white transition"
-
                 >
-
                     View all
-
-                </a>
+                </Link>
 
             </div>
 

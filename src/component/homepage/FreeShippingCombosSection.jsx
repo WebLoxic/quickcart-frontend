@@ -2,6 +2,7 @@
 
 import products from "@/data/products";
 import { useCart } from "@/context/CartContext";
+import Link from "next/link";
 
 export default function FreeShippingCombosSection() {
 
@@ -22,6 +23,7 @@ export default function FreeShippingCombosSection() {
             <div className="mb-10">
                 <img
                     src="/assets/images/product/freeshipbanner.webp"
+                    alt="Free Shipping Banner"
                     className="w-full rounded-lg"
                 />
             </div>
@@ -52,20 +54,29 @@ export default function FreeShippingCombosSection() {
 
                             {/* Image */}
 
-                            <div className="h-[180px] flex items-center justify-center mb-4">
+                            <Link href={`/product/${product.slug || product.id}`}>
 
-                                <img
-                                    src={imageSrc}
-                                    className="max-h-full object-contain"
-                                />
+                                <div className="h-[180px] flex items-center justify-center mb-4 cursor-pointer">
 
-                            </div>
+                                    <img
+                                        src={imageSrc}
+                                        alt={product.name}
+                                        className="max-h-full object-contain"
+                                    />
+
+                                </div>
+
+                            </Link>
 
                             {/* Name */}
 
-                            <h3 className="text-sm leading-snug line-clamp-2 min-h-[40px] mb-2">
-                                {product.name}
-                            </h3>
+                            <Link href={`/product/${product.slug || product.id}`}>
+
+                                <h3 className="text-sm leading-snug line-clamp-2 min-h-[40px] mb-2 hover:underline cursor-pointer">
+                                    {product.name}
+                                </h3>
+
+                            </Link>
 
                             {/* Brand */}
 
@@ -84,11 +95,8 @@ export default function FreeShippingCombosSection() {
                             <button
                                 onClick={() => addToCart(product)}
                                 className="mt-auto border border-gray-400 py-3 hover:bg-black hover:text-white transition"
-
                             >
-
                                 Add to cart
-
                             </button>
 
                         </div>
@@ -103,15 +111,12 @@ export default function FreeShippingCombosSection() {
 
             <div className="flex justify-center mt-10">
 
-                <a
+                <Link
                     href="/collections/free-shipping-combo-packs"
                     className="border border-gray-400 px-10 py-3 hover:bg-black hover:text-white transition"
-
                 >
-
                     View all
-
-                </a>
+                </Link>
 
             </div>
 

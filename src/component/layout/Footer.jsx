@@ -19,10 +19,7 @@ export default function Footer() {
 
           <div className="col-span-2 md:col-span-1">
 
-            <img
-              src="/assets/images/product/satmolalogo.png"
-              className="h-12 mb-4"
-            />
+          
 
             <p className="text-sm mb-6">
               SSG Pharma Pvt. Ltd.

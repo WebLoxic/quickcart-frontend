@@ -2,6 +2,7 @@
 
 import products from "@/data/products";
 import { useCart } from "@/context/CartContext";
+import Link from "next/link";
 
 export default function FestiveComboSection() {
 
@@ -43,28 +44,37 @@ export default function FestiveComboSection() {
 
                             {/* Image */}
 
-                            <div className="relative h-[200px] flex items-center justify-center mb-4">
+                            <Link href={`/product/${product.slug || product.id}`}>
 
-                                <img
-                                    src={imageSrc}
-                                    className="max-h-full object-contain"
-                                />
+                                <div className="relative h-[200px] flex items-center justify-center mb-4 cursor-pointer">
 
-                                {product.discount && (
+                                    <img
+                                        src={imageSrc}
+                                        alt={product.name}
+                                        className="max-h-full object-contain"
+                                    />
 
-                                    <span className="absolute bottom-3 left-3 bg-gray-200 text-xs px-3 py-1 rounded-full">
-                                        Sale
-                                    </span>
+                                    {product.discount && (
 
-                                )}
+                                        <span className="absolute bottom-3 left-3 bg-gray-200 text-xs px-3 py-1 rounded-full">
+                                            Sale
+                                        </span>
 
-                            </div>
+                                    )}
+
+                                </div>
+
+                            </Link>
 
                             {/* Name */}
 
-                            <h3 className="text-sm leading-snug line-clamp-2 min-h-[40px] mb-2">
-                                {product.name}
-                            </h3>
+                            <Link href={`/product/${product.slug || product.id}`}>
+
+                                <h3 className="text-sm leading-snug line-clamp-2 min-h-[40px] mb-2 hover:underline cursor-pointer">
+                                    {product.name}
+                                </h3>
+
+                            </Link>
 
                             {/* Brand */}
 
@@ -103,11 +113,8 @@ export default function FestiveComboSection() {
                             <button
                                 onClick={() => addToCart(product)}
                                 className="mt-auto border border-gray-400 py-3 hover:bg-black hover:text-white transition"
-
                             >
-
                                 Add to cart
-
                             </button>
 
                         </div>
@@ -122,15 +129,12 @@ export default function FestiveComboSection() {
 
             <div className="flex justify-center mt-12">
 
-                <a
+                <Link
                     href="/collections/gift-packs"
                     className="border border-gray-400 px-10 py-3 hover:bg-black hover:text-white transition"
-
                 >
-
                     View all
-
-                </a>
+                </Link>
 
             </div>
 

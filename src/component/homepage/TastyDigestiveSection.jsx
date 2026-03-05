@@ -37,16 +37,27 @@ export default function TastyDigestiveSection() {
 
                     return (
 
-                        <div key={product.id} className="text-center">
+                        <div key={product.id} className="text-center flex flex-col h-full">
 
-                            {/* CLICKABLE PRODUCT */}
+                            {/* Image */}
 
-                            <Link href={`/product/${product.id}`}>
+                            <Link href={`/product/${product.slug || product.id}`}>
 
-                                <img
-                                    src={imageSrc}
-                                    className="w-full object-contain mb-4 cursor-pointer"
-                                />
+                                <div className="cursor-pointer">
+
+                                    <img
+                                        src={imageSrc}
+                                        alt={product.name}
+                                        className="w-full object-contain mb-4"
+                                    />
+
+                                </div>
+
+                            </Link>
+
+                            {/* Name */}
+
+                            <Link href={`/product/${product.slug || product.id}`}>
 
                                 <h3 className="text-sm leading-snug mb-2 hover:underline cursor-pointer">
                                     {product.name}
@@ -64,7 +75,7 @@ export default function TastyDigestiveSection() {
 
                             <button
                                 onClick={() => addToCart(product)}
-                                className="border border-gray-400 w-full py-3 hover:bg-black hover:text-white transition"
+                                className="border border-gray-400 w-full py-3 hover:bg-black hover:text-white transition mt-auto"
                             >
                                 Add to cart
                             </button>

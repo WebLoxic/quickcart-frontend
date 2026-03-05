@@ -59,7 +59,7 @@ export default function Header() {
         {/* TOP BAR */}
 
         <div className="bg-red-600 text-white text-sm text-center py-2">
-          Get free shipping on all orders over 500/- For bulk orders call us at +919311675300 →
+          Get free shipping on all orders over 500/- For bulk orders call us at +00000000000 →
         </div>
 
         {/* MOBILE HEADER */}
@@ -76,7 +76,7 @@ export default function Header() {
           </div>
 
           <Link href="/">
-            <img src="/assets/images/product/satmolalogo.png" className="h-10" />
+            <img src="/assets/images/product/bobbylogo1.png" className="h-20" />
           </Link>
 
           <button onClick={() => setOpenCart(true)} className="relative">
@@ -100,7 +100,7 @@ export default function Header() {
             <Search size={22} />
 
             <Link href="/">
-              <img src="/assets/images/product/satmolalogo.png" className="h-14" />
+              <img src="/assets/images/product/bobbylogo1.png" className="h-30" />
             </Link>
 
             <div className="flex items-center gap-6">
