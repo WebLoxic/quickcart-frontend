@@ -15,8 +15,11 @@ import {
 import { useCart } from "@/context/CartContext";
 import CartDrawer from "@/component/cart/CartDrawer";
 import BottomCartBar from "@/component/cart/BottomCartBar";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
+
+  const pathname = usePathname();
 
   const [openCart, setOpenCart] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
@@ -165,21 +168,83 @@ export default function Header() {
 
             <div className="max-w-[1200px] mx-auto flex justify-center gap-10 py-4 text-sm font-medium">
 
-              <Link href="/">Home</Link>
-
-              <Link href="/collections/digestive" className="flex items-center gap-1">
-                Digestive <ChevronDown size={14} />
+              <Link
+                href="/"
+                className={`relative pb-1 ${pathname === "/" ? "text-red-600" : ""}`}
+              >
+                Home
+                {pathname === "/" && (
+                  <span className="absolute left-0 bottom-0 w-full h-[2px] bg-red-600"></span>
+                )}
               </Link>
 
-              <Link href="/collections/mouth-freshner">Mouth Fresheners</Link>
+              <Link
+                href="/collections/digestive"
+                className={`relative pb-1 flex items-center gap-1 ${pathname.includes("/collections/digestive") ? "text-red-600" : ""
+                  }`}
+              >
+                Digestive <ChevronDown size={14} />
+                {pathname.includes("/collections/digestive") && (
+                  <span className="absolute left-0 bottom-0 w-full h-[2px] bg-red-600"></span>
+                )}
+              </Link>
 
-              <Link href="/collections/namkeens">Namkeens</Link>
+              <Link
+                href="/collections/mouth-freshner"
+                className={`relative pb-1 ${pathname.includes("/collections/mouth-freshner") ? "text-red-600" : ""
+                  }`}
+              >
+                Mouth Fresheners
+                {pathname.includes("/collections/mouth-freshner") && (
+                  <span className="absolute left-0 bottom-0 w-full h-[2px] bg-red-600"></span>
+                )}
+              </Link>
 
-              <Link href="/collections/sweets">Sweets</Link>
+              <Link
+                href="/collections/namkeens"
+                className={`relative pb-1 ${pathname.includes("/collections/namkeens") ? "text-red-600" : ""
+                  }`}
+              >
+                Namkeens
+                {pathname.includes("/collections/namkeens") && (
+                  <span className="absolute left-0 bottom-0 w-full h-[2px] bg-red-600"></span>
+                )}
+              </Link>
 
-              <Link href="/collections/free-shipping-combo-packs">Free Delivery Combo</Link>
+              <Link
+                href="/collections/sweets"
+                className={`relative pb-1 ${pathname.includes("/collections/sweets") ? "text-red-600" : ""
+                  }`}
+              >
+                Sweets
+                {pathname.includes("/collections/sweets") && (
+                  <span className="absolute left-0 bottom-0 w-full h-[2px] bg-red-600"></span>
+                )}
+              </Link>
 
-              <Link href="/collections/gift-packs">Gift Packs</Link>
+              <Link
+                href="/collections/free-shipping-combo-packs"
+                className={`relative pb-1 ${pathname.includes("/collections/free-shipping-combo-packs")
+                    ? "text-red-600"
+                    : ""
+                  }`}
+              >
+                Free Delivery Combo
+                {pathname.includes("/collections/free-shipping-combo-packs") && (
+                  <span className="absolute left-0 bottom-0 w-full h-[2px] bg-red-600"></span>
+                )}
+              </Link>
+
+              <Link
+                href="/collections/gift-packs"
+                className={`relative pb-1 ${pathname.includes("/collections/gift-packs") ? "text-red-600" : ""
+                  }`}
+              >
+                Gift Packs
+                {pathname.includes("/collections/gift-packs") && (
+                  <span className="absolute left-0 bottom-0 w-full h-[2px] bg-red-600"></span>
+                )}
+              </Link>
 
             </div>
 
@@ -230,7 +295,7 @@ export default function Header() {
 
           <div className="px-6 py-6">
 
-            <Link href="/account" className="flex items-center gap-2 mb-4">
+            <Link href="/account/addresses" className="flex items-center gap-2 mb-4">
               <User size={20} /> Account
             </Link>
 

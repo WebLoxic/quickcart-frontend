@@ -74,7 +74,7 @@ export default function CheckoutPage() {
         window.location.href = "/";
       },
 
-      theme: { color: "#16a34a" }
+      theme: { color: "#a32b16" }
     };
 
     const rzp = new window.Razorpay(options);
@@ -153,7 +153,7 @@ export default function CheckoutPage() {
         <button
           onClick={handlePayment}
           disabled={loading}
-          className="mt-6 w-full bg-green-600 hover:bg-green-700 transition text-white py-3 rounded-lg font-semibold text-lg disabled:opacity-50"
+          className="mt-6 w-full bg-red-600 hover:bg-red-700 transition text-white py-3 rounded-lg font-semibold text-lg disabled:opacity-50"
         >
           {loading ? "Processing..." : `Pay ₹${grandTotal}`}
         </button>

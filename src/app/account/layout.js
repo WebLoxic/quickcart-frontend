@@ -77,7 +77,7 @@ export default function AccountLayout({ children }) {
             {isMobile && !isRootAccount && (
               <div className="mb-4 flex items-center gap-2">
                 <button
-                  onClick={() => router.push("/account")}
+                  onClick={() => router.push("/account/orders")}
                   className="flex items-center gap-1 text-sm font-medium"
                 >
                   <ArrowLeft size={16} />

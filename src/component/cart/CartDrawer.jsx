@@ -72,7 +72,7 @@ export default function CartDrawer({ open, onClose }) {
                   <p className="text-xs text-gray-500">₹{item.price}</p>
                 </div>
 
-                <div className="flex items-center bg-green-600 text-white rounded-md">
+                <div className="flex items-center bg-red-600 text-white rounded-md">
                   <button
                     onClick={() => removeFromCart(item.id)}
                     className="px-3 py-1"
@@ -148,7 +148,7 @@ export default function CartDrawer({ open, onClose }) {
                   onClick={() => setTip(amount)}
                   className={`px-4 py-2 rounded-lg border ${
                     tip === amount
-                      ? "bg-green-600 text-white"
+                      ? "bg-red-600 text-white"
                       : "bg-gray-100"
                   }`}
                 >
@@ -168,7 +168,7 @@ export default function CartDrawer({ open, onClose }) {
         </div>
 
         {/* Bottom Bar */}
-        <div className="bg-green-700 text-white p-4">
+        <div className="bg-red-700 text-white p-4">
           <div className="flex justify-between items-center">
             <div>
               <p className="text-lg font-semibold">₹{grandTotal}</p>
@@ -180,7 +180,7 @@ export default function CartDrawer({ open, onClose }) {
     onClose();
     router.push("/checkout");
   }}
-  className="bg-green-600 px-6 py-2 rounded-lg"
+  className="bg-red-600 px-6 py-2 rounded-lg"
 >
   Proceed →
 </button>

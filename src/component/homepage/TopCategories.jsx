@@ -31,7 +31,7 @@ const categories = [
         title: "SATMOLA COMBO",
         desc: "Special combos delivered",
         image: "/assets/images/product/categories5.png",
-        slug: "combo",
+        slug: "free-shipping-combo-packs",
     },
 ];
 
