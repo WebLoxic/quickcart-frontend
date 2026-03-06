@@ -79,7 +79,7 @@ export default function Header() {
           </div>
 
           <Link href="/">
-            <img src="/assets/images/product/bobbylogo1.png" className="h-20" />
+            <img src="/assets/images/product/logo3.png" className="h-15" />
           </Link>
 
           <button onClick={() => setOpenCart(true)} className="relative">
@@ -103,7 +103,7 @@ export default function Header() {
             <Search size={22} />
 
             <Link href="/">
-              <img src="/assets/images/product/bobbylogo1.png" className="h-30" />
+              <img src="/assets/images/product/logo3.png" className="h-20" />
             </Link>
 
             <div className="flex items-center gap-6">

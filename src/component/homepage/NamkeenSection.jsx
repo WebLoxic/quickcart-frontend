@@ -6,110 +6,99 @@ import Link from "next/link";
 
 export default function NamkeenSection() {
 
-    const { addToCart } = useCart();
+  const { addToCart } = useCart();
 
-    /* Filter Namkeen Products */
+  const namkeenProducts = products
+    .filter((item) => item.category === "Namkeens")
+    .slice(0, 5);
 
-    const namkeenProducts = products
-        .filter((item) => item.category === "Namkeens")
-        .slice(0, 5);
+  return (
 
-    return (
+    <section className="max-w-[1250px] mx-auto px-4 py-16">
 
-        <section className="max-w-[1250px] mx-auto px-4 py-16">
+      <h2 className="text-center text-2xl md:text-3xl font-semibold mb-10">
+        CRUNCHY NAMKEEN TREATS
+      </h2>
 
-            {/* Title */}
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
 
-            <h2 className="text-center text-2xl md:text-3xl font-semibold mb-10">
-                CRUNCHY NAMKEEN TREATS
-            </h2>
+        {namkeenProducts.map((product) => {
 
-            {/* Products */}
+          const imageSrc =
+            product?.images?.length
+              ? product.images[0]
+              : product.image;
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+          return (
 
-                {namkeenProducts.map((product) => {
+            <div key={product.id} className="text-center flex flex-col h-full">
 
-                    const imageSrc =
-                        product?.images?.length
-                            ? product.images[0]
-                            : product.image;
+              {/* Image */}
 
-                    return (
+              <Link href={`/product/${product.slug || product.id}`}>
 
-                        <div
-                            key={product.id}
-                            className="flex flex-col h-[360px] text-center"
-                        >
+                <div className="cursor-pointer">
 
-                            {/* Image */}
+                  <img
+                    src={imageSrc}
+                    alt={product.name}
+                    className="w-full object-contain mb-4"
+                  />
 
-                            <Link href={`/product/${product.slug || product.id}`}>
+                </div>
 
-                                <div className="h-[180px] flex items-center justify-center cursor-pointer">
+              </Link>
 
-                                    <img
-                                        src={imageSrc}
-                                        alt={product.name}
-                                        className="max-h-full object-contain"
-                                    />
+              {/* Name */}
 
-                                </div>
+              <Link href={`/product/${product.slug || product.id}`}>
 
-                            </Link>
+                <h3 className="text-sm leading-snug mb-2 hover:underline cursor-pointer min-h-[48px]">
+                  {product.name}
+                </h3>
 
-                            {/* Name */}
+              </Link>
 
-                            <Link href={`/product/${product.slug || product.id}`}>
+              {/* Rating space */}
 
-                                <h3 className="text-sm leading-snug mt-3 line-clamp-2 min-h-[40px] hover:underline cursor-pointer">
-                                    {product.name}
-                                </h3>
+              <div className="h-[20px]"></div>
 
-                            </Link>
+              {/* Price */}
 
-                            {/* Price */}
+              <p className="mb-4 text-gray-700">
+                MRP ₹ {product.price.toFixed(2)}
+              </p>
 
-                            <p className="mt-2 text-gray-700">
-                                MRP ₹ {product.price.toFixed(2)}
-                            </p>
+              {/* Button */}
 
-                            {/* Button */}
-
-                            <div className="mt-auto">
-
-                                <button
-                                    onClick={() => addToCart(product)}
-                                    className="border border-gray-400 w-full py-3 hover:bg-black hover:text-white transition"
-                                >
-                                    Add to cart
-                                </button>
-
-                            </div>
-
-                        </div>
-
-                    );
-
-                })}
+              <button
+                onClick={() => addToCart(product)}
+                className="border border-gray-400 w-full py-3 hover:bg-black hover:text-white transition mt-auto"
+              >
+                Add to cart
+              </button>
 
             </div>
 
-            {/* View All */}
+          );
 
-            <div className="flex justify-center mt-10">
+        })}
 
-                <Link
-                    href="/collections/namkeens"
-                    className="border border-gray-400 px-10 py-3 hover:bg-black hover:text-white transition"
-                >
-                    View all
-                </Link>
+      </div>
 
-            </div>
+      <div className="flex justify-center mt-10">
 
-        </section>
+        <Link
+          href="/collections/namkeens"
+          className="border border-gray-400 px-10 py-3 hover:bg-black hover:text-white transition"
+        >
+          View all
+        </Link>
 
-    );
+      </div>
+
+    </section>
+
+  );
 
 }
