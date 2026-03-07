@@ -1,95 +1,143 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
-const categories = [
-    {
-        title: "DIGESTIVE",
-        desc: "Tasty treats, happy digestion",
-        image: "/assets/images/product/categories2.png",
-        slug: "digestive",
-    },
-    {
-        title: "NAMKEENS",
-        desc: "Snack Delight in Every Bite",
-        image: "/assets/images/product/categories1.png",
-        slug: "namkeens",
-    },
-    {
-        title: "SWEETS",
-        desc: "Sweet treats with happiness",
-        image: "/assets/images/product/categories3.png",
-        slug: "sweets",
-    },
-    {
-        title: "MUKHWAS",
-        desc: "Fresh Treats, Anytime, Anywhere",
-        image: "/assets/images/product/categories4.png",
-        slug: "mouth-freshner",
-    },
-    {
-        title: "SATMOLA COMBO",
-        desc: "Special combos delivered",
-        image: "/assets/images/product/categories5.png",
-        slug: "free-shipping-combo-packs",
-    },
-];
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
+
+import "swiper/css";
 
 export default function TopCategories() {
-    return (<section className="max-w-[1250px] mx-auto px-4 py-14">
 
-        
-        {/* Heading */}
+    const [categories, setCategories] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-        <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-semibold tracking-wide">
-                EXPLORE OUR TOP CATEGORIES
-            </h2>
+    useEffect(() => {
 
-            <p className="text-gray-500 mt-2 text-sm md:text-base">
-                Explore our wide range of products specially crafted for your taste and health.
-            </p>
-        </div>
+        const fetchCategories = async () => {
 
-        {/* Cards */}
+            try {
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                const res = await fetch("https://bobby.webloxic.cloud/api/categories", {
+                    cache: "no-store",
+                });
 
-            {categories.map((cat) => (
-                <div
-                    key={cat.slug}
-                    className="relative h-[320px] rounded-xl overflow-hidden shadow-md hover:scale-[1.02] transition duration-300 flex items-end bg-cover bg-center"
-                    style={{ backgroundImage: `url(${cat.image})` }}
-                >
+                const data = await res.json();
 
-                    {/* Overlay Content */}
+                setCategories(data);
 
-                    <div className="w-full bg-white/95 text-center p-4">
+            } catch (error) {
 
-                        <h3 className="font-semibold text-lg">
-                            {cat.title}
-                        </h3>
+                console.error("API Error:", error);
 
-                        <p className="text-gray-600 text-sm mb-3">
-                            {cat.desc}
-                        </p>
+            } finally {
 
-                        <Link
-                            href={`/collections/${cat.slug}`}
-                            className="inline-block bg-red-600 text-white px-6 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition"
-                        >
-                            Shop Now
-                        </Link>
+                setLoading(false);
 
-                    </div>
+            }
 
-                </div>
-            ))}
+        };
 
-        </div>
+        fetchCategories();
 
-    </section>
+    }, []);
 
+    if (loading) {
+        return (
+            <div className="text-center py-20 text-gray-500">
+                Loading categories...
+            </div>
+        );
+    }
 
-);
+    return (
+
+        <section className="max-w-[1250px] mx-auto px-4 py-14">
+
+            {/* Heading */}
+
+            <div className="text-center mb-12">
+
+                <h2 className="text-2xl md:text-3xl font-semibold tracking-wide">
+                    EXPLORE OUR TOP CATEGORIES
+                </h2>
+
+                <p className="text-gray-500 mt-2 text-sm md:text-base">
+                    Explore our wide range of products specially crafted for your taste and health.
+                </p>
+
+            </div>
+
+            {/* Slider */}
+
+            <Swiper
+                modules={[Autoplay]}
+                spaceBetween={20}
+                autoplay={{
+                    delay: 2500,
+                    disableOnInteraction: false,
+                }}
+                loop={true}
+                breakpoints={{
+                    0: {
+                        slidesPerView: 2,
+                    },
+                    640: {
+                        slidesPerView: 3,
+                    },
+                    1024: {
+                        slidesPerView: 5,
+                    },
+                }}
+            >
+
+                {categories.map((cat) => {
+
+                    const slug = cat.name
+                        .toLowerCase()
+                        .replace(/\s+/g, "-");
+
+                    return (
+
+                        <SwiperSlide key={cat.id}>
+
+                            <div
+                                className="relative h-[320px] rounded-xl overflow-hidden shadow-md hover:scale-[1.02] transition duration-300 flex items-end bg-cover bg-center"
+                                style={{
+                                    backgroundImage: `url(/assets/images/product/categories1.png)`
+                                }}
+                            >
+
+                                <div className="w-full bg-white/95 text-center p-4">
+
+                                    <h3 className="font-semibold text-lg">
+                                        {cat.name}
+                                    </h3>
+
+                                    <p className="text-gray-600 text-sm mb-3">
+                                        {cat.description}
+                                    </p>
+
+                                    <Link
+                                        href={`/collections/${slug}`}
+                                        className="inline-block bg-red-600 text-white px-6 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition"
+                                    >
+                                        Shop Now
+                                    </Link>
+
+                                </div>
+
+                            </div>
+
+                        </SwiperSlide>
+
+                    );
+
+                })}
+
+            </Swiper>
+
+        </section>
+    );
 }

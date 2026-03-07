@@ -1,38 +1,107 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useCart } from "@/context/CartContext";
-import products from "@/data/products";
+import { useParams } from "next/navigation";
 import ProductCard from "@/component/ProductCard";
 
-export default function ProductDetailClient({ product }) {
+export default function ProductDetailClient() {
 
   const { addToCart } = useCart();
+  const { id } = useParams();
+
+  const [product, setProduct] = useState(null);
+  const [similarProducts, setSimilarProducts] = useState([]);
   const [qty, setQty] = useState(1);
+  const [selectedImage, setSelectedImage] = useState("");
 
-  const images =
-    product?.images?.length
-      ? product.images
-      : product?.image
-      ? [product.image]
-      : ["/next.svg"];
+  /* FETCH PRODUCT DETAILS */
 
-  const [selectedImage, setSelectedImage] = useState(images[0]);
+  useEffect(() => {
 
-  /* Similar Products */
+    const fetchProduct = async () => {
 
-  const similarProducts = products.filter(
-    (item) =>
-      item.category === product.category &&
-      item.id !== product.id
-  );
+      try {
+
+        const res = await fetch(
+          `https://bobby.webloxic.cloud/api/product-details/${id}`
+        );
+
+        const data = await res.json();
+
+        if (data.status) {
+
+          setProduct(data.product);
+          setSelectedImage(data.product.image);
+
+        }
+
+      } catch (error) {
+
+        console.log("Product API Error:", error);
+
+      }
+
+    };
+
+    fetchProduct();
+
+  }, [id]);
+
+  /* FETCH SIMILAR PRODUCTS */
+
+  useEffect(() => {
+
+    const fetchProducts = async () => {
+
+      if (!product) return;
+
+      try {
+
+        const res = await fetch(
+          "https://bobby.webloxic.cloud/api/products"
+        );
+
+        const data = await res.json();
+
+        const filtered = data.products.filter(
+          (p) =>
+            Number(p.category_id) === Number(product.category_id) &&
+            Number(p.id) !== Number(product.id)
+        );
+
+        setSimilarProducts(filtered.slice(0, 5));
+
+      } catch (error) {
+
+        console.log("Similar Product Error:", error);
+
+      }
+
+    };
+
+    fetchProducts();
+
+  }, [product]);
+
+  if (!product) {
+
+    return (
+      <div className="text-center py-20">
+        Loading product...
+      </div>
+    );
+
+  }
+
+  const images = product.image ? [product.image] : ["/next.svg"];
 
   return (
 
     <div className="max-w-[1250px] mx-auto px-6 py-12">
 
-      {/* ================= PRODUCT SECTION ================= */}
+      {/* PRODUCT SECTION */}
 
       <div className="grid md:grid-cols-2 gap-16">
 
@@ -51,39 +120,6 @@ export default function ProductDetailClient({ product }) {
 
           </div>
 
-          {/* THUMBNAILS */}
-
-          {images.length > 1 && (
-
-            <div className="flex gap-3 mt-4">
-
-              {images.map((img, index) => (
-
-                <div
-                  key={index}
-                  onClick={() => setSelectedImage(img)}
-                  className={`relative w-[80px] h-[80px] cursor-pointer border ${
-                    selectedImage === img
-                      ? "border-black"
-                      : "border-gray-200"
-                  }`}
-                >
-
-                  <Image
-                    src={img}
-                    alt="thumb"
-                    fill
-                    className="object-contain p-1"
-                  />
-
-                </div>
-
-              ))}
-
-            </div>
-
-          )}
-
         </div>
 
         {/* RIGHT SIDE */}
@@ -91,26 +127,15 @@ export default function ProductDetailClient({ product }) {
         <div>
 
           <p className="text-gray-500 uppercase text-sm mb-2">
-            SATMOLA
+            {product.category?.name}
           </p>
 
           <h1 className="text-2xl font-semibold mb-4">
             {product.name}
           </h1>
 
-          {/* Rating */}
-
-          <div className="flex items-center gap-2 mb-4 text-yellow-500">
-            ★★★★★
-            <span className="text-gray-600 text-sm">
-              3 Reviews
-            </span>
-          </div>
-
-          {/* Price */}
-
           <p className="text-xl font-semibold mb-6">
-            MRP ₹ {product.price}.00
+            MRP ₹ {Number(product.price).toFixed(2)}
           </p>
 
           <p className="text-sm text-gray-500 mb-6">
@@ -160,16 +185,6 @@ export default function ProductDetailClient({ product }) {
             Buy it now
           </button>
 
-          {/* Pickup */}
-
-          <p className="mt-6 text-sm text-gray-600">
-            ✔ Pickup available at Shop location
-          </p>
-
-          <p className="text-sm text-gray-500">
-            Usually ready in 24 hours
-          </p>
-
           {/* Description */}
 
           <div className="mt-10">
@@ -179,9 +194,7 @@ export default function ProductDetailClient({ product }) {
             </h2>
 
             <p className="text-gray-600 leading-relaxed">
-              Enjoy the perfect balance of flavors with {product.name}.
-              This crunchy and mildly spiced snack is ideal for teatime
-              or anytime cravings.
+              {product.description}
             </p>
 
           </div>
@@ -190,7 +203,7 @@ export default function ProductDetailClient({ product }) {
 
       </div>
 
-      {/* ================= SIMILAR PRODUCTS ================= */}
+      {/* SIMILAR PRODUCTS */}
 
       {similarProducts.length > 0 && (
 
@@ -202,7 +215,7 @@ export default function ProductDetailClient({ product }) {
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
 
-            {similarProducts.slice(0, 5).map((item) => (
+            {similarProducts.map((item) => (
 
               <ProductCard
                 key={item.id}

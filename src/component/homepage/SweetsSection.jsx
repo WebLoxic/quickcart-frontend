@@ -1,6 +1,6 @@
 "use client";
 
-import products from "@/data/products";
+import { useState, useEffect } from "react";
 import { useCart } from "@/context/CartContext";
 import Link from "next/link";
 
@@ -8,9 +8,57 @@ export default function SweetsSection() {
 
     const { addToCart } = useCart();
 
-    const sweetProducts = products
-        .filter((item) => item.category === "Sweets")
-        .slice(0, 3);
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    /* fetch products */
+
+    useEffect(() => {
+
+        const fetchProducts = async () => {
+
+            try {
+
+                const res = await fetch(
+                    "https://bobby.webloxic.cloud/api/products",
+                    { cache: "no-store" }
+                );
+
+                const data = await res.json();
+
+                if (data.status) {
+                    setProducts(data.products);
+                }
+
+            } catch (error) {
+
+                console.log("Products API Error:", error);
+
+            } finally {
+
+                setLoading(false);
+
+            }
+
+        };
+
+        fetchProducts();
+
+    }, []);
+
+    /* show first 3 products */
+
+    const sweetProducts = products.slice(0, 3);
+
+    if (loading) {
+
+        return (
+            <div className="text-center py-20 text-gray-500">
+                Loading products...
+            </div>
+        );
+
+    }
 
     return (
 
@@ -26,106 +74,61 @@ export default function SweetsSection() {
 
             <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
 
-                {sweetProducts.map((product) => {
+                {sweetProducts.map((product) => (
 
-                    const imageSrc =
-                        product?.images?.length
-                            ? product.images[0]
-                            : product.image;
+                    <div
+                        key={product.id}
+                        className="text-center flex flex-col h-full"
+                    >
 
-                    return (
+                        {/* Image */}
 
-                        <div
-                            key={product.id}
-                            className="text-center flex flex-col h-full"
-                        >
+                        <Link href={`/product/${product.id}`}>
 
-                            {/* Image */}
+                            <div className="bg-gray-50 p-4 mb-3 cursor-pointer">
 
-                            <Link href={`/product/${product.slug || product.id}`}>
-
-                                <div className="bg-gray-50 p-4 mb-3 cursor-pointer">
-
-                                    <img
-                                        src={imageSrc}
-                                        alt={product.name}
-                                        className="h-[180px] w-full object-contain mx-auto"
-                                    />
-
-                                </div>
-
-                            </Link>
-
-                            {/* Sold out badge */}
-
-                            {product.soldOut && (
-
-                                <span className="text-xs bg-gray-200 px-3 py-1 rounded-full inline-block mb-2">
-                                    Sold out
-                                </span>
-
-                            )}
-
-                            {/* Name */}
-
-                            <Link href={`/product/${product.slug || product.id}`}>
-
-                                <h3 className="text-sm leading-snug min-h-[40px] mb-2 hover:underline cursor-pointer">
-                                    {product.name}
-                                </h3>
-
-                            </Link>
-
-                            {/* Price */}
-
-                            <div className="mb-4">
-
-                                {product.originalPrice && (
-
-                                    <span className="text-gray-400 line-through text-sm mr-2">
-                                        ₹ {product.originalPrice}
-                                    </span>
-
-                                )}
-
-                                <span className="font-semibold">
-                                    ₹ {product.price}
-                                </span>
-
-                                {product.discount && (
-
-                                    <span className="ml-2 bg-red-500 text-white text-xs px-2 py-1 rounded">
-                                        {product.discount}
-                                    </span>
-
-                                )}
+                                <img
+                                    src={product.image}
+                                    alt={product.name}
+                                    className="h-[180px] w-full object-contain mx-auto"
+                                />
 
                             </div>
 
-                            {/* Button */}
+                        </Link>
 
-                            {product.soldOut ? (
+                        {/* Name */}
 
-                                <button className="border border-gray-300 w-full py-3 text-gray-400">
-                                    Sold out
-                                </button>
+                        <Link href={`/product/${product.id}`}>
 
-                            ) : (
+                            <h3 className="text-sm leading-snug min-h-[40px] mb-2 hover:underline cursor-pointer">
+                                {product.name}
+                            </h3>
 
-                                <button
-                                    onClick={() => addToCart(product)}
-                                    className="border border-gray-400 w-full py-3 hover:bg-black hover:text-white transition"
-                                >
-                                    Add to cart
-                                </button>
+                        </Link>
 
-                            )}
+                        {/* Price */}
+
+                        <div className="mb-4">
+
+                            <span className="font-semibold">
+                                ₹ {Number(product.price).toFixed(2)}
+                            </span>
 
                         </div>
 
-                    )
+                        {/* Button */}
 
-                })}
+                        <button
+                            onClick={() => addToCart(product)}
+                            className="border border-gray-400 w-full py-3 hover:bg-black hover:text-white transition"
+                        >
+                            Add to cart
+                        </button>
+
+                    </div>
+
+                ))}
 
             </div>
 

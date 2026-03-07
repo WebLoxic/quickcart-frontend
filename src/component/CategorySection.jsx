@@ -1,47 +1,54 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Link from "next/link";
-import { getProducts } from "@/services/api";
+import { useState, useEffect } from "react";
 import ProductCard from "@/component/ProductCard";
+import Link from "next/link";
 
-export default function TastyDigestiveSection() {
+export default function CategorySection({ category }) {
 
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
 
-    async function loadProducts() {
+    const fetchProducts = async () => {
 
       try {
 
-        const data = await getProducts();
+        const res = await fetch(
+          "https://bobby.webloxic.cloud/api/products"
+        );
 
-        const filtered = data.slice(0,5);
+        const data = await res.json();
+
+        const filtered = data.products
+          .filter(p => Number(p.category_id) === Number(category.id))
+          .slice(0,5);
 
         setProducts(filtered);
 
       } catch (error) {
-        console.error("Product API Error:", error);
+
+        console.log(error);
+
       }
 
-    }
+    };
 
-    loadProducts();
+    fetchProducts();
 
-  }, []);
+  }, [category.id]);
 
   return (
 
     <section className="max-w-[1250px] mx-auto px-4 py-16">
 
       <h2 className="text-center text-2xl md:text-3xl font-semibold mb-10">
-        TASTY & DIGESTIVE CANDY
+        {category.name.toUpperCase()}
       </h2>
 
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
 
-        {products.map((product) => (
+        {products.map(product => (
           <ProductCard key={product.id} product={product} />
         ))}
 
@@ -50,7 +57,7 @@ export default function TastyDigestiveSection() {
       <div className="flex justify-center mt-10">
 
         <Link
-          href="/collections/digestive"
+          href={`/collections/${category.name.toLowerCase()}`}
           className="border border-gray-400 px-10 py-3 hover:bg-black hover:text-white transition"
         >
           View all
@@ -59,5 +66,7 @@ export default function TastyDigestiveSection() {
       </div>
 
     </section>
+
   );
+
 }

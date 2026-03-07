@@ -8,6 +8,7 @@ import NamkeenSection from "@/component/homepage/NamkeenSection";
 import FestiveComboSection from "@/component/homepage/FestiveComboSection";
 import FreeShippingCombosSection from "@/component/homepage/FreeShippingCombosSection";
 import SweetsSection from "@/component/homepage/SweetsSection";
+import HomepageCategories from "@/component/homepage/HomepageCategories";
 
 export default function Home() {
 
@@ -18,11 +19,12 @@ return (
 {/* Banner */} <Banner />
 
 {/* Satmola Top Categories */} <TopCategories />
-<TastyDigestiveSection/>
-<NamkeenSection/>
-<FestiveComboSection/>
-<FreeShippingCombosSection/>
-<SweetsSection/>
+<HomepageCategories/>
+{/* <TastyDigestiveSection/> */}
+{/* <NamkeenSection/> */}
+{/* <FestiveComboSection/> */}
+{/* <FreeShippingCombosSection/> */}
+{/* <SweetsSection/> */}
 </>
 
 );

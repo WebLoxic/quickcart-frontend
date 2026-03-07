@@ -1,6 +1,6 @@
 "use client";
 
-import products from "@/data/products";
+import { useState, useEffect } from "react";
 import { useCart } from "@/context/CartContext";
 import Link from "next/link";
 
@@ -8,11 +8,59 @@ export default function FestiveComboSection() {
 
     const { addToCart } = useCart();
 
-    /* Filter Gift Pack Products */
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-    const combos = products
-        .filter((item) => item.category === "Gift Packs")
-        .slice(0, 4);
+    useEffect(() => {
+
+        const fetchProducts = async () => {
+
+            try {
+
+                const res = await fetch(
+                    "https://bobby.webloxic.cloud/api/products",
+                    { cache: "no-store" }
+                );
+
+                const data = await res.json();
+
+                if (data.status) {
+
+                    setProducts(data.products);
+
+                }
+
+            } catch (error) {
+
+                console.log("Products API Error:", error);
+
+            } finally {
+
+                setLoading(false);
+
+            }
+
+        };
+
+        fetchProducts();
+
+    }, []);
+
+    /* show only first 4 */
+
+    const combos = products.slice(0, 4);
+
+    if (loading) {
+
+        return (
+
+            <div className="text-center py-20 text-gray-500">
+                Loading products...
+            </div>
+
+        );
+
+    }
 
     return (
 
@@ -30,11 +78,6 @@ export default function FestiveComboSection() {
 
                 {combos.map((product) => {
 
-                    const imageSrc =
-                        product?.images?.length
-                            ? product.images[0]
-                            : product.image;
-
                     return (
 
                         <div
@@ -44,23 +87,15 @@ export default function FestiveComboSection() {
 
                             {/* Image */}
 
-                            <Link href={`/product/${product.slug || product.id}`}>
+                            <Link href={`/product/${product.id}`}>
 
                                 <div className="relative h-[200px] flex items-center justify-center mb-4 cursor-pointer">
 
                                     <img
-                                        src={imageSrc}
+                                        src={product.image}
                                         alt={product.name}
                                         className="max-h-full object-contain"
                                     />
-
-                                    {product.discount && (
-
-                                        <span className="absolute bottom-3 left-3 bg-gray-200 text-xs px-3 py-1 rounded-full">
-                                            Sale
-                                        </span>
-
-                                    )}
 
                                 </div>
 
@@ -68,7 +103,7 @@ export default function FestiveComboSection() {
 
                             {/* Name */}
 
-                            <Link href={`/product/${product.slug || product.id}`}>
+                            <Link href={`/product/${product.id}`}>
 
                                 <h3 className="text-sm leading-snug line-clamp-2 min-h-[40px] mb-2 hover:underline cursor-pointer">
                                     {product.name}
@@ -86,25 +121,9 @@ export default function FestiveComboSection() {
 
                             <div className="flex items-center gap-2 mb-4">
 
-                                {product.originalPrice && (
-
-                                    <span className="text-gray-400 line-through text-sm">
-                                        ₹ {product.originalPrice}
-                                    </span>
-
-                                )}
-
                                 <span className="font-semibold text-lg">
                                     ₹ {product.price}
                                 </span>
-
-                                {product.discount && (
-
-                                    <span className="bg-red-500 text-white text-xs px-2 py-1 rounded">
-                                        {product.discount}
-                                    </span>
-
-                                )}
 
                             </div>
 
@@ -130,7 +149,7 @@ export default function FestiveComboSection() {
             <div className="flex justify-center mt-12">
 
                 <Link
-                    href="/collections/gift-packs"
+                    href="/collections"
                     className="border border-gray-400 px-10 py-3 hover:bg-black hover:text-white transition"
                 >
                     View all

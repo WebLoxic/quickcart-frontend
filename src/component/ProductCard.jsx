@@ -8,18 +8,13 @@ export default function ProductCard({ product }) {
 
   const { addToCart } = useCart();
 
-  const imageSrc =
-    product?.images?.length && product.images[0]?.trim()
-      ? product.images[0]
-      : product?.image?.trim()
-      ? product.image
-      : "/next.svg";
+  const imageSrc = product.image
+    ? product.image
+    : "/next.svg";
 
   return (
 
     <div className="text-center">
-
-      {/* CLICKABLE PRODUCT */}
 
       <Link href={`/product/${product.id}`}>
 
@@ -40,19 +35,13 @@ export default function ProductCard({ product }) {
 
       </Link>
 
-      {/* Rating */}
-
       <div className="text-yellow-500 text-sm mb-2">
         ★★★★★ <span className="text-gray-500 text-xs">(6)</span>
       </div>
 
-      {/* Price */}
-
       <p className="text-gray-800 mb-4">
-        MRP ₹ {product.price.toFixed(2)}
+        MRP ₹ {Number(product.price).toFixed(2)}
       </p>
-
-      {/* Add To Cart */}
 
       <button
         onClick={() => addToCart(product)}
@@ -62,7 +51,5 @@ export default function ProductCard({ product }) {
       </button>
 
     </div>
-
   );
-
 }

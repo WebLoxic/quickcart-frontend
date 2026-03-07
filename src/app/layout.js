@@ -1,13 +1,13 @@
+"use client";
+
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-// ✅ Import Header & Footer
 import Header from "@/component/layout/Header";
-
 import ConditionalFooter from "@/component/layout/ConditionalFooter";
-
-// ✅ Import CartProvider
 import { CartProvider } from "@/context/CartContext";
+
+import { usePathname } from "next/navigation";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,29 +19,38 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata = {
-  title: "QuickCart",
-  description: "Modern E-commerce UI",
-};
-
 export default function RootLayout({ children }) {
+
+  const pathname = usePathname();
+
+  /* hide header on these routes */
+
+  const hideHeaderRoutes = [
+    "/auth/login",
+    "/auth/register",
+    "/admin"
+  ];
+
+  const hideHeader = hideHeaderRoutes.some(route =>
+    pathname.startsWith(route)
+  );
+
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
-      >
-        {/* ✅ Wrap Entire App Inside CartProvider */}
-    <CartProvider>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}>
 
-  <Header />
+        <CartProvider>
 
-  <main className="flex-grow">
-    {children}
-  </main>
+          {!hideHeader && <Header />}
 
-  <ConditionalFooter />
+          <main className="flex-grow">
+            {children}
+          </main>
 
-</CartProvider>
+          {!hideHeader && <ConditionalFooter />}
+
+        </CartProvider>
+
       </body>
     </html>
   );
